@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--圆角背景相关-->
+    <!--参见styleable的GradientDrawableGradient及相关属性-->
+    <declare-styleable name="ShapeInfo">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapePadding" />
+        <attr name="shapePaddingLeft" />
+        <attr name="shapePaddingTop" />
+        <attr name="shapePaddingRight" />
+        <attr name="shapePaddingBottom" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
+    <declare-styleable name="ShapeView">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapePadding" />
+        <attr name="shapePaddingLeft" />
+        <attr name="shapePaddingTop" />
+        <attr name="shapePaddingRight" />
+        <attr name="shapePaddingBottom" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
+    <declare-styleable name="ShapeTextView">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapePadding" />
+        <attr name="shapePaddingLeft" />
+        <attr name="shapePaddingTop" />
+        <attr name="shapePaddingRight" />
+        <attr name="shapePaddingBottom" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
+    <declare-styleable name="ShapeFrameLayout">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapePadding" />
+        <attr name="shapePaddingLeft" />
+        <attr name="shapePaddingTop" />
+        <attr name="shapePaddingRight" />
+        <attr name="shapePaddingBottom" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
+
+    <!--填充色-->
+    <attr name="shapeSolidColor" format="color" />
+    <!--圆角-->
+    <attr name="shapeCornersRadius" format="dimension" />
+    <attr name="shapeCornersTopLeftRadius" format="dimension" />
+    <attr name="shapeCornersTopRightRadius" format="dimension" />
+    <attr name="shapeCornersBottomLeftRadius" format="dimension" />
+    <attr name="shapeCornersBottomRightRadius" format="dimension" />
+    <!--大小-->
+    <attr name="shapeSizeWidth" format="dimension" />
+    <attr name="shapeSizeHeight" format="dimension" />
+    <!--渐变-->
+    <attr name="shapeGradientType">
+        <enum name="linear" value="0" />
+        <enum name="radial" value="1" />
+        <enum name="sweep" value="2" />
+    </attr>
+    <attr name="shapeGradientCenterX" format="float|fraction" />
+    <attr name="shapeGradientCenterY" format="float|fraction" />
+    <attr name="shapeGradientStartColor" format="color" />
+    <attr name="shapeGradientCenterColor" format="color" />
+    <attr name="shapeGradientEndColor" format="color" />
+    <attr name="shapeGradientAngle" format="integer" />
+    <!--代码只支持固定值，后续再说-->
+    <!--<attr name="shapeGradientRadius" format="float|fraction|dimension" />-->
+    <attr name="shapeGradientRadius" format="dimension" />
+    <!--padding-->
+    <attr name="shapePadding" format="dimension" />
+    <attr name="shapePaddingLeft" format="dimension" />
+    <attr name="shapePaddingTop" format="dimension" />
+    <attr name="shapePaddingRight" format="dimension" />
+    <attr name="shapePaddingBottom" format="dimension" />
+    <!--圆环相关-->
+    <attr name="shapeInnerRadius" format="dimension" />
+    <attr name="shapeInnerRadiusRatio" format="float" />
+    <attr name="shapeThickness" format="dimension" />
+    <attr name="shapeThicknessRatio" format="float" />
+</resources>

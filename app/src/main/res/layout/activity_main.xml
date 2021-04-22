@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.foundation.widget.ShapeTextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:shape="oval"
+        android:text="Hello World!"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeSolidColor="#00f" />
+
+    <com.foundation.widget.ShapeFrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:shape="rectangle"
+        app:shapeCornersRadius="100dp"
+        app:shapeGradientStartColor="#fff"
+        app:shapeGradientEndColor="#000"
+        app:shapeGradientType="linear"
+        android:text="Hello World!"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv"
+        app:shapeSolidColor="#00f" />
+
+    <com.foundation.widget.ShapeView
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:shape="oval"
+        android:text="Hello World!"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl"
+        app:shapeSolidColor="#00f" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
