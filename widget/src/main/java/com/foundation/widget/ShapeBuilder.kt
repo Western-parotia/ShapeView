@@ -68,41 +68,33 @@ class ShapeBuilder(private val targetView: View) {
         setCornersRadius(radius)
         val shapeTopLeftRadius = getPx(a, R.styleable.ShapeInfo_shapeCornersTopLeftRadius, radius)
         val shapeTopRightRadius = getPx(a, R.styleable.ShapeInfo_shapeCornersTopRightRadius, radius)
-        val shapeBottomLeftRadius = getPx(a,
-            R.styleable.ShapeInfo_shapeCornersBottomLeftRadius, radius)
-        val shapeBottomRightRadius = getPx(a,
-            R.styleable.ShapeInfo_shapeCornersBottomRightRadius, radius)
+        val shapeBottomLeftRadius = getPx(a, R.styleable.ShapeInfo_shapeCornersBottomLeftRadius, radius)
+        val shapeBottomRightRadius = getPx(a, R.styleable.ShapeInfo_shapeCornersBottomRightRadius, radius)
         if (shapeTopLeftRadius != radius || shapeTopRightRadius != radius ||
-                shapeBottomLeftRadius != radius || shapeBottomRightRadius != radius) {
+            shapeBottomLeftRadius != radius || shapeBottomRightRadius != radius) {
             setCornersRadius(shapeTopLeftRadius, shapeTopRightRadius, shapeBottomLeftRadius, shapeBottomRightRadius)
         }
 
         //大小，GradientDrawable.updateGradientDrawableSize
         setSize(getPx(a, R.styleable.ShapeInfo_shapeSizeWidth, drawable!!.intrinsicWidth),
-                getPx(a, R.styleable.ShapeInfo_shapeSizeHeight, drawable!!.intrinsicHeight))
+            getPx(a, R.styleable.ShapeInfo_shapeSizeHeight, drawable!!.intrinsicHeight))
 
         //渐变，GradientDrawable.updateGradientDrawableGradient
         if (a.hasValue(R.styleable.ShapeInfo_shapeGradientType)) {
             setGradientType(a.getInt(R.styleable.ShapeInfo_shapeGradientType, GradientDrawable.LINEAR_GRADIENT/*mGd?.gradientType，api24*/))
-            val shapeGradientCenterX = getFloatOrFraction(a,
-                R.styleable.ShapeInfo_shapeGradientCenterX, 0.5f/*mGd?.gradientCenterX，api24*/)
-            val shapeGradientCenterY = getFloatOrFraction(a,
-                R.styleable.ShapeInfo_shapeGradientCenterY, 0.5f/*mGd?.gradientCenterY，api24*/)
+            val shapeGradientCenterX = getFloatOrFraction(a, R.styleable.ShapeInfo_shapeGradientCenterX, 0.5f/*mGd?.gradientCenterX，api24*/)
+            val shapeGradientCenterY = getFloatOrFraction(a, R.styleable.ShapeInfo_shapeGradientCenterY, 0.5f/*mGd?.gradientCenterY，api24*/)
             setGradientCenter(shapeGradientCenterX, shapeGradientCenterY)
             //val colors = mGd?.colors，api24
             //低api有bug，set方法和solidColor冲突
             if (a.hasValue(R.styleable.ShapeInfo_shapeGradientStartColor)) {
-                val shapeGradientStartColor = getColor(a,
-                    R.styleable.ShapeInfo_shapeGradientStartColor
-                )
+                val shapeGradientStartColor = getColor(a, R.styleable.ShapeInfo_shapeGradientStartColor)
                 val hasCenterColor = a.hasValue(R.styleable.ShapeInfo_shapeGradientCenterColor)
-                val shapeGradientCenterColor = getColor(a,
-                    R.styleable.ShapeInfo_shapeGradientCenterColor
-                )
+                val shapeGradientCenterColor = getColor(a, R.styleable.ShapeInfo_shapeGradientCenterColor)
                 val shapeGradientEndColor = getColor(a, R.styleable.ShapeInfo_shapeGradientEndColor)
                 if (hasCenterColor) {
                     setGradientColors(intArrayOf(shapeGradientStartColor, shapeGradientCenterColor, shapeGradientEndColor),
-                            floatArrayOf(0f, if (shapeGradientCenterX != 0.5f) shapeGradientCenterX else shapeGradientCenterY, 1f))
+                        floatArrayOf(0f, if (shapeGradientCenterX != 0.5f) shapeGradientCenterX else shapeGradientCenterY, 1f))
                 } else {
                     setGradientColors(intArrayOf(shapeGradientStartColor, shapeGradientEndColor))
                 }
@@ -112,13 +104,12 @@ class ShapeBuilder(private val targetView: View) {
             setGradientRadius(getPx(a, R.styleable.ShapeInfo_shapeGradientRadius))
         }
 
-
         //padding，GradientDrawable.updateGradientDrawablePadding
         val shapePadding = getPx(a, R.styleable.ShapeInfo_shapePadding)
         setPadding(getPx(a, R.styleable.ShapeInfo_shapePaddingLeft, shapePadding),
-                getPx(a, R.styleable.ShapeInfo_shapePaddingTop, shapePadding),
-                getPx(a, R.styleable.ShapeInfo_shapePaddingRight, shapePadding),
-                getPx(a, R.styleable.ShapeInfo_shapePaddingBottom, shapePadding))
+            getPx(a, R.styleable.ShapeInfo_shapePaddingTop, shapePadding),
+            getPx(a, R.styleable.ShapeInfo_shapePaddingRight, shapePadding),
+            getPx(a, R.styleable.ShapeInfo_shapePaddingBottom, shapePadding))
 
         //圆环相关，GradientDrawable.updateStateFromTypedArray
         if (shape == GradientDrawable.RING) {
@@ -199,12 +190,11 @@ class ShapeBuilder(private val targetView: View) {
     /**
      * 注意顺序
      */
-    fun setCornersRadius(topLeftRadius: Int = 0, topRightRadius: Int = 0, bottomRightRadius: Int = 0,
-                         bottomLeftRadius: Int = 0) {
+    fun setCornersRadius(topLeftRadius: Int = 0, topRightRadius: Int = 0, bottomRightRadius: Int = 0, bottomLeftRadius: Int = 0) {
         setCornersRadius(floatArrayOf(topLeftRadius.toFloat(), topLeftRadius.toFloat(),
-                topRightRadius.toFloat(), topRightRadius.toFloat(),
-                bottomRightRadius.toFloat(), bottomRightRadius.toFloat(),
-                bottomLeftRadius.toFloat(), bottomLeftRadius.toFloat()))
+            topRightRadius.toFloat(), topRightRadius.toFloat(),
+            bottomRightRadius.toFloat(), bottomRightRadius.toFloat(),
+            bottomLeftRadius.toFloat(), bottomLeftRadius.toFloat()))
     }
 
     fun setCornersRadius(radii: FloatArray?) {
@@ -240,7 +230,9 @@ class ShapeBuilder(private val targetView: View) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             drawable?.setColors(colors, offsets)
         } else {
-            ReflectionUtils.setValue(drawable?.constantState, "mPositions", offsets)
+            if (offsets != null) {
+                ReflectionUtils.setValue(drawable?.constantState, "mPositions", offsets)
+            }
             drawable?.colors = colors
         }
     }

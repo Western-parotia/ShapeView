@@ -18,6 +18,20 @@ allprojects {
     repositories {
         google()
         jcenter()
+        allprojects {
+            repositories {
+                maven {
+                    url 'https://maven.aliyun.com/repository/public'
+                }
+                maven {
+                    url = 'https://mijukeji-maven.pkg.coding.net/repository/jileiku/base_maven/'
+                    credentials {
+                        username = '873456775@qq.com'
+                        password = 'wwn13764923475'
+                    }
+                }
+            }
+        }
     }
 }
 

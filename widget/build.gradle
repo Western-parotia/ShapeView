@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 
+def VERSION_NAME = "1.2.5-SNAPSHOT"
 android {
     compileSdkVersion 30
     buildToolsVersion "28.0.3"
@@ -11,9 +12,11 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName VERSION_NAME
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "VERSION_NAME", "\"" + VERSION_NAME + "\"")
+        buildConfigField("String", "BUILD_TIME", "\"" + new Date() + "\"")
     }
 
     buildTypes {
@@ -34,4 +37,34 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
+}
+
+apply plugin: 'maven-publish'
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "source"
+}
+
+publishing {
+
+    publications {
+        tools(MavenPublication) {
+            artifact(sourceJar)
+            artifact("$rootDir/widget/build/outputs/aar/widget-debug.aar")//指定源码
+            groupId = 'com.foundation.widget'//最好使用包名
+            artifactId = 'ShapeView'//
+            version = VERSION_NAME
+        }
+    }
+
+    repositories {
+        maven {
+            url = 'https://mijukeji-maven.pkg.coding.net/repository/jileiku/base_maven/'
+            credentials {
+                username = '873456775@qq.com'
+                password = 'wwn13764923475'
+            }
+        }
+    }
 }

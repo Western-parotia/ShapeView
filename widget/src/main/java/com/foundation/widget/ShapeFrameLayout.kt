@@ -10,7 +10,7 @@ import android.widget.FrameLayout
  * 详细说明见[ShapeBuilder]
  */
 class ShapeFrameLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-        FrameLayout(context, attrs, defStyleAttr) {
+    FrameLayout(context, attrs, defStyleAttr) {
     private val mShapeBuilder = ShapeBuilder(this)
 
     constructor(context: Context) : this(context, null, 0)
