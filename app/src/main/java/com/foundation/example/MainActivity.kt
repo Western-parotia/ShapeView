@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
             tv.buildShape().apply {
                 setShape(GradientDrawable.RECTANGLE)
                 setCornersRadius(100)
-                build()
             }
 
             fl.setBackgroundColor(0x88888888.toInt())

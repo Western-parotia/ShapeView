@@ -31,6 +31,8 @@ class ShapeBuilder(private val targetView: View) {
         get() {
             if (field == null) {
                 field = GradientDrawable()
+                //延迟调用，设置背景
+                targetView.post { targetView.background = drawable }
             }
             return field
         }
@@ -127,7 +129,7 @@ class ShapeBuilder(private val targetView: View) {
             }
         }
 
-        build()
+        targetView.background = drawable
 
         a.recycle()
     }
@@ -312,9 +314,5 @@ class ShapeBuilder(private val targetView: View) {
             ReflectionUtils.setValue(drawable, "mPathIsDirty", true)
             drawable?.invalidateSelf()
         }
-    }
-
-    fun build() {
-        targetView.background = drawable
     }
 }
