@@ -24,21 +24,17 @@ allprojects {
     repositories {
         google()
         jcenter()
-        allprojects {
-            repositories {
-                maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-                maven { url 'https://maven.aliyun.com/repository/public/' }
-                maven { url 'https://maven.aliyun.com/repository/google/' }
-                maven { url 'https://maven.aliyun.com/repository/jcenter/' }
-                maven { url 'https://maven.aliyun.com/repository/central/' }
-                maven { url 'https://jitpack.io' }
-                maven {
-                    url = 'https://mijukeji-maven.pkg.coding.net/repository/jileiku/base_maven/'
-                    credentials {
-                        username = '873456775@qq.com'
-                        password = 'wwn13764923475'
-                    }
-                }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter/' }
+        maven { url 'https://maven.aliyun.com/repository/central/' }
+        maven { url 'https://jitpack.io' }
+        maven {
+            url = 'https://mijukeji-maven.pkg.coding.net/repository/jileiku/base_maven/'
+            credentials {
+                username = '873456775@qq.com'
+                password = 'wwn13764923475'
             }
         }
     }
