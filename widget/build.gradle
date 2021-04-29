@@ -3,9 +3,11 @@ plugins {
     id 'kotlin-android'
 }
 
-def VERSION_NAME = "0.0.1-SNAPSHOT"
-//仓库名称，如果是空则为四级包名
-def REPOSITORY_ARTIFACT_ID = "ShapeView"
+ext {
+    VERSION_NAME = "0.0.1-SNAPSHOT"
+    //仓库名称，如果是空则为四级包名
+    REPOSITORY_ARTIFACT_ID = "ShapeView"
+}
 
 android {
     compileSdkVersion 30
@@ -49,7 +51,7 @@ publishing {
             artifact(sourceJar)
             artifact("$projectDir/build/outputs/aar/$project.name-debug.aar")//指定源码
             groupId = getThreePackage()
-            artifactId = getArtifactId()
+            artifactId = getRepositoryArtifactId()
             version = VERSION_NAME
         }
     }
@@ -86,7 +88,7 @@ String getThreePackage() {
 /**
  * 上传库时的名字
  */
-String getArtifactId() {
+String getRepositoryArtifactId() {
     String id = REPOSITORY_ARTIFACT_ID
     if (id != null && id.length() > 0) {
         return id;
