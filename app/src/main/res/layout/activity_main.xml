@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.foundation.widget.ShapeTextView
+    <com.foundation.widget.shape.ShapeTextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeSolidColor="#00f" />
 
-    <com.foundation.widget.ShapeFrameLayout
+    <com.foundation.widget.shape.ShapeFrameLayout
         android:id="@+id/fl"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv"
         app:shapeSolidColor="#00f" />
 
-    <com.foundation.widget.ShapeView
+    <com.foundation.widget.shape.ShapeView
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="100dp"

@@ -1,4 +1,4 @@
-package com.foundation.widget;
+package com.foundation.widget.shape;
 
 import android.graphics.Rect;
 

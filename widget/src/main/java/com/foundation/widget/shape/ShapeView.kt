@@ -1,16 +1,16 @@
-package com.foundation.widget
+package com.foundation.widget.shape
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import androidx.appcompat.widget.AppCompatTextView
+import android.view.View
 
 /**
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-        AppCompatTextView(context, attrs, defStyleAttr) {
+class ShapeView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+    View(context, attrs, defStyleAttr) {
     private val mShapeBuilder = ShapeBuilder(this)
 
     constructor(context: Context) : this(context, null, 0)
