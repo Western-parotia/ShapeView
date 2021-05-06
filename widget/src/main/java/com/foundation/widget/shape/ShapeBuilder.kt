@@ -8,7 +8,10 @@ import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import androidx.annotation.*
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.NonNull
+import androidx.annotation.Px
 import androidx.core.content.ContextCompat
 
 /**
@@ -36,14 +39,6 @@ class ShapeBuilder(private val targetView: View) {
             }
             return field
         }
-
-    @IntDef(GradientDrawable.RECTANGLE, GradientDrawable.OVAL, GradientDrawable.LINE, GradientDrawable.RING)
-    @Retention(AnnotationRetention.SOURCE)
-    annotation class Shape
-
-    @IntDef(GradientDrawable.LINEAR_GRADIENT, GradientDrawable.RADIAL_GRADIENT, GradientDrawable.SWEEP_GRADIENT)
-    @Retention(AnnotationRetention.SOURCE)
-    annotation class GradientType
 
     /**
      * 自定义view初始化attrs调用
@@ -163,7 +158,7 @@ class ShapeBuilder(private val targetView: View) {
     /**
      * 圆角类型
      */
-    fun setShape(@Shape shape: Int) {
+    fun setShape(@ShapeDef.Shape shape: Int) {
         drawable?.shape = shape
     }
 
@@ -213,7 +208,7 @@ class ShapeBuilder(private val targetView: View) {
     /**
      * grand类型
      */
-    fun setGradientType(@GradientType type: Int) {
+    fun setGradientType(@ShapeDef.GradientType type: Int) {
         drawable?.gradientType = type
     }
 
