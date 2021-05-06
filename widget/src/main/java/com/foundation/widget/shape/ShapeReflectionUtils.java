@@ -1,5 +1,6 @@
 package com.foundation.widget.shape;
 
+import android.annotation.TargetApi;
 import android.graphics.Rect;
 
 import org.jetbrains.annotations.NotNull;
@@ -9,8 +10,11 @@ import java.lang.reflect.Field;
 
 /**
  * 低api没有对应set方法
+ * <p>
+ * 提示：这里的反射在api29以上无效，目前这几个属性都是白名单，所以不涉及反射限制
  */
-class ReflectionUtils {
+@TargetApi(android.os.Build.VERSION_CODES.P)
+class ShapeReflectionUtils {
 
     /**
      * 设置属性，直接覆盖

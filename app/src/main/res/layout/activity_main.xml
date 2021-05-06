@@ -10,26 +10,32 @@
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:shape="oval"
+        android:shape="rectangle"
+        app:shapeGradientCenterX="0.5"
+        app:shapeGradientCenterY="0.5"
+        app:shapeGradientStartColor="#fff"
+        app:shapeGradientEndColor="#f0f"
+        app:shapePadding="20dp"
+        app:shapeGradientRadius="50dp"
+        app:shapeGradientType="radial"
         android:text="Hello World!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeSolidColor="#00f" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.foundation.widget.shape.ShapeFrameLayout
         android:id="@+id/fl"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:shape="rectangle"
-        app:shapeCornersRadius="100dp"
-        app:shapeGradientStartColor="#fff"
-        app:shapeGradientEndColor="#000"
-        app:shapeGradientType="linear"
         android:text="Hello World!"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv"
+        app:shapeCornersRadius="100dp"
+        app:shapeGradientEndColor="#000"
+        app:shapeGradientStartColor="#fff"
+        app:shapeGradientType="linear"
         app:shapeSolidColor="#00f" />
 
     <com.foundation.widget.shape.ShapeView
@@ -43,4 +49,13 @@
         app:layout_constraintTop_toBottomOf="@id/fl"
         app:shapeSolidColor="#00f" />
 
+    <TextView
+        android:id="@+id/tv_original"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Hello World!"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        android:background="@drawable/shape_test"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
