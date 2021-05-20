@@ -16,4 +16,8 @@ object Dependencies {
     object Material {
         const val material = "com.google.android.material:material:1.3.0"
     }
+
+    object Company {
+        const val shape = "com.foundation.widget:Shape:0.0.1-SNAPSHOT"
+    }
 }

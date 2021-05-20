@@ -1,4 +1,5 @@
-import com.foundation.buildsrc.*
+import com.foundation.buildsrc.Dependencies
+import com.foundation.buildsrc.Statics
 
 plugins {
     id("com.android.application")
@@ -29,7 +30,7 @@ dependencies {
     implementation(Dependencies.AndroidX.appcompat)
     implementation(Dependencies.Material.material)
 
-    implementation("com.foundation.widget:Shape:0.0.1-SNAPSHOT")
+    implementation(Dependencies.Company.shape)
 //    implementation(project(":service"))
 }
 configurations.all {
