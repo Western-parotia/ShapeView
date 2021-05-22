@@ -11,21 +11,21 @@ import android.widget.FrameLayout
  */
 class ShapeFrameLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     FrameLayout(context, attrs, defStyleAttr) {
-    private val mShapeBuilder = ShapeBuilder(this)
+    private val mShapeHelper = ShapeInitHelper(this)
 
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
     init {
-        mShapeBuilder.initAttrs(attrs)
+        mShapeHelper.initAttrs(attrs)
     }
 
     override fun setBackground(background: Drawable?) {
-        mShapeBuilder.setBackground(background)
+        mShapeHelper.setBackground(background)
         super.setBackground(background)
     }
 
     fun buildShape(): ShapeBuilder {
-        return mShapeBuilder
+        return mShapeHelper.builder
     }
 }

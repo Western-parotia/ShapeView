@@ -31,4 +31,4 @@ gradientRadius属性：原xml支持百分比，但受反射限制并且高api没
 
 1.自己搜索shape教程，一大堆
 
-2.想直接看源码解释：xml打出”android:shape="oval"“，点进去，所有以”GradientDrawable“开头的styleable均是
+2.想直接看源码解释：xml打出”android:shape="oval"，点进去，所有以“GradientDrawable”开头的styleable均是
