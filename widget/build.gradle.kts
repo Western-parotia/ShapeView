@@ -1,6 +1,6 @@
+
 import com.foundation.buildsrc.Dependencies
 import com.foundation.buildsrc.Publish
-import java.util.*
 
 plugins {
     id("com.android.library")
@@ -24,8 +24,8 @@ android {
         targetSdkVersion(30)
         versionCode(1)
         versionName(Publish.Version.versionName)
-        buildConfigField("String", "VERSION_NAME", "\"${Publish.Version.versionName}\"")
-        buildConfigField("String", "BUILD_TIME", "\" ${Date()}\"")
+        buildConfigField("String", "versionName", "\"${Publish.Version.versionName}\"")
+        buildConfigField("String", "versionTimeStamp", "\"$versionTimestamp\"")
     }
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_1_8)
