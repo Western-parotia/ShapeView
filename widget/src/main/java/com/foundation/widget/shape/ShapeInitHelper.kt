@@ -55,7 +55,7 @@ class ShapeInitHelper(private val targetView: View) {
             getPx(a, R.styleable.ShapeInfo_shapeSizeHeight, builder.drawable!!.intrinsicHeight))
 
         //渐变，GradientDrawable.updateGradientDrawableGradient
-        if (a.hasValue(R.styleable.ShapeInfo_shapeGradientType)) {
+        if (a.hasValue(R.styleable.ShapeInfo_shapeGradientType) || a.hasValue(R.styleable.ShapeInfo_shapeGradientStartColor)) {
             builder.setGradientType(a.getInt(R.styleable.ShapeInfo_shapeGradientType, GradientDrawable.LINEAR_GRADIENT/*mGd?.gradientType，api24*/))
             val shapeGradientCenterX = getFloatOrFraction(a, R.styleable.ShapeInfo_shapeGradientCenterX, 0.5f/*mGd?.gradientCenterX，api24*/)
             val shapeGradientCenterY = getFloatOrFraction(a, R.styleable.ShapeInfo_shapeGradientCenterY, 0.5f/*mGd?.gradientCenterY，api24*/)

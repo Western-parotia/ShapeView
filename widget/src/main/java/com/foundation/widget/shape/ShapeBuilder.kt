@@ -30,6 +30,7 @@ class ShapeBuilder(private val targetView: View) {
         get() {
             if (field == null) {
                 field = GradientDrawable()
+                field?.level = 10000
                 //延迟调用，设置背景
                 targetView.post { targetView.background = drawable }
             }
