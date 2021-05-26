@@ -92,7 +92,7 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     /**
-     * 宽高，暂时没用
+     * 宽高，用处不大
      */
     fun setSize(@Px width: Int, @Px height: Int) {
         drawable?.setSize(width, height)

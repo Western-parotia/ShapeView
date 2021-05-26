@@ -47,11 +47,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl"
-        app:shapeGradientEndColor="#00f"
-        app:shapeGradientRadius="2dp"
-        app:shapeGradientStartColor="#f0f"
-        app:shapeInnerRadiusRatio="5"
-        app:shapeThicknessRatio="6" />
+        app:shapeInnerRadiusRatio="10"
+        app:shapeSolidColor="#f0f"
+        app:shapeThicknessRatio="10" />
 
     <TextView
         android:id="@+id/tv_original"
