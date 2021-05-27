@@ -80,11 +80,7 @@ class ShapeInitHelper(private val targetView: View) {
         }
 
         //padding，GradientDrawable.updateGradientDrawablePadding
-        val shapePadding = getPx(a, R.styleable.ShapeInfo_shapePadding)
-        builder.setPadding(getPx(a, R.styleable.ShapeInfo_shapePaddingLeft, shapePadding),
-            getPx(a, R.styleable.ShapeInfo_shapePaddingTop, shapePadding),
-            getPx(a, R.styleable.ShapeInfo_shapePaddingRight, shapePadding),
-            getPx(a, R.styleable.ShapeInfo_shapePaddingBottom, shapePadding))
+        //实际上就是view的padding，还有bug，请直接使用view的padding
 
         //圆环相关，GradientDrawable.updateStateFromTypedArray
         if (shape == GradientDrawable.RING) {

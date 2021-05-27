@@ -21,11 +21,6 @@
         <attr name="shapeGradientEndColor" />
         <attr name="shapeGradientAngle" />
         <attr name="shapeGradientRadius" />
-        <attr name="shapePadding" />
-        <attr name="shapePaddingLeft" />
-        <attr name="shapePaddingTop" />
-        <attr name="shapePaddingRight" />
-        <attr name="shapePaddingBottom" />
         <attr name="shapeInnerRadius" />
         <attr name="shapeInnerRadiusRatio" />
         <attr name="shapeThickness" />
@@ -49,11 +44,6 @@
         <attr name="shapeGradientEndColor" />
         <attr name="shapeGradientAngle" />
         <attr name="shapeGradientRadius" />
-        <attr name="shapePadding" />
-        <attr name="shapePaddingLeft" />
-        <attr name="shapePaddingTop" />
-        <attr name="shapePaddingRight" />
-        <attr name="shapePaddingBottom" />
         <attr name="shapeInnerRadius" />
         <attr name="shapeInnerRadiusRatio" />
         <attr name="shapeThickness" />
@@ -77,11 +67,6 @@
         <attr name="shapeGradientEndColor" />
         <attr name="shapeGradientAngle" />
         <attr name="shapeGradientRadius" />
-        <attr name="shapePadding" />
-        <attr name="shapePaddingLeft" />
-        <attr name="shapePaddingTop" />
-        <attr name="shapePaddingRight" />
-        <attr name="shapePaddingBottom" />
         <attr name="shapeInnerRadius" />
         <attr name="shapeInnerRadiusRatio" />
         <attr name="shapeThickness" />
@@ -105,52 +90,49 @@
         <attr name="shapeGradientEndColor" />
         <attr name="shapeGradientAngle" />
         <attr name="shapeGradientRadius" />
-        <attr name="shapePadding" />
-        <attr name="shapePaddingLeft" />
-        <attr name="shapePaddingTop" />
-        <attr name="shapePaddingRight" />
-        <attr name="shapePaddingBottom" />
         <attr name="shapeInnerRadius" />
         <attr name="shapeInnerRadiusRatio" />
         <attr name="shapeThickness" />
         <attr name="shapeThicknessRatio" />
     </declare-styleable>
 
-    <!--填充色-->
+    <!--内部填充色-->
     <attr name="shapeSolidColor" format="color" />
-    <!--圆角-->
+    <!--四边圆角-->
     <attr name="shapeCornersRadius" format="dimension" />
     <attr name="shapeCornersTopLeftRadius" format="dimension" />
     <attr name="shapeCornersTopRightRadius" format="dimension" />
     <attr name="shapeCornersBottomLeftRadius" format="dimension" />
     <attr name="shapeCornersBottomRightRadius" format="dimension" />
-    <!--大小-->
+    <!--大小，写死宽高（一般用于wrap的控件）-->
     <attr name="shapeSizeWidth" format="dimension" />
     <attr name="shapeSizeHeight" format="dimension" />
-    <!--渐变-->
+    <!--渐变类型-->
     <attr name="shapeGradientType">
         <enum name="linear" value="0" />
         <enum name="radial" value="1" />
         <enum name="sweep" value="2" />
     </attr>
+    <!--渐变中间坐标，支持绝对值和百分比，如：100或50%-->
     <attr name="shapeGradientCenterX" format="float|fraction" />
     <attr name="shapeGradientCenterY" format="float|fraction" />
+    <!--渐变开始、中间、结束色-->
     <attr name="shapeGradientStartColor" format="color" />
     <attr name="shapeGradientCenterColor" format="color" />
     <attr name="shapeGradientEndColor" format="color" />
+    <!--渐变方向角度，支持45的倍数，如：360-->
     <attr name="shapeGradientAngle" format="integer" />
-    <!--代码只支持固定值，后续再说-->
+    <!--渐变中间圆大小，如：100dp。~~原xml支持百分比，但受反射限制并且高api没有对应方法，暂时不做（可用曲线救国实现）~~-->
     <!--<attr name="shapeGradientRadius" format="float|fraction|dimension" />-->
     <attr name="shapeGradientRadius" format="dimension" />
-    <!--padding-->
-    <attr name="shapePadding" format="dimension" />
-    <attr name="shapePaddingLeft" format="dimension" />
-    <attr name="shapePaddingTop" format="dimension" />
-    <attr name="shapePaddingRight" format="dimension" />
-    <attr name="shapePaddingBottom" format="dimension" />
-    <!--圆环相关-->
+    <!--padding，实际上就是view的padding，还有bug，请直接使用view的padding-->
+    <!--<attr name="shapePadding" format="dimension" />-->
+    <!--圆环内环大小-->
     <attr name="shapeInnerRadius" format="dimension" />
+    <!--内环大小占比，以shape宽为基础除以该值，如内环和宽一样：2-->
     <attr name="shapeInnerRadiusRatio" format="float" />
+    <!--环的厚度-->
     <attr name="shapeThickness" format="dimension" />
+    <!--环的厚度占比，以shape宽为基础除以该值，如撑满：2-->
     <attr name="shapeThicknessRatio" format="float" />
 </resources>

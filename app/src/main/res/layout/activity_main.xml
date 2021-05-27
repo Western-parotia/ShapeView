@@ -20,8 +20,7 @@
         app:shapeGradientEndColor="#f0f"
         app:shapeGradientRadius="50dp"
         app:shapeGradientStartColor="#fff"
-        app:shapeGradientType="radial"
-        app:shapePadding="20dp" />
+        app:shapeGradientType="radial" />
 
     <com.foundation.widget.shape.ShapeFrameLayout
         android:id="@+id/fl"

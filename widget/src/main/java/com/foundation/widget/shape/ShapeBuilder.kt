@@ -1,7 +1,6 @@
 package com.foundation.widget.shape
 
 import android.content.res.ColorStateList
-import android.graphics.Rect
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.annotation.ColorInt
@@ -42,6 +41,22 @@ class ShapeBuilder(private val targetView: View) {
      */
     private fun invalidateSelf() {
         drawable?.orientation = drawable?.orientation//调用一次orientation就行了，省的反射
+    }
+
+    /**
+     * 低api没有对应set方法，反射设置属性
+     * 注意：这里的反射在api29以上无效，目前这几个属性都是白名单，所以不涉及反射限制
+     */
+    private fun setDrawableValue(failedName: String, value: Any?) {
+        try {
+            drawable?.constantState?.let {
+                val f = it.javaClass.getDeclaredField(failedName)
+                f.isAccessible = true
+                f[it] = value
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,7 +136,7 @@ class ShapeBuilder(private val targetView: View) {
             drawable?.setColors(colors, offsets)
         } else {
             if (offsets != null) {
-                ShapeReflectionUtils.setValue(drawable?.constantState, "mPositions", offsets)
+                setDrawableValue("mPositions", offsets)
             }
             drawable?.colors = colors
         }
@@ -151,24 +166,11 @@ class ShapeBuilder(private val targetView: View) {
         drawable?.gradientRadius = radius.toFloat()
     }
 
-    fun setPadding(@Px left: Int, @Px top: Int, @Px right: Int, @Px bottom: Int) {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            drawable?.setPadding(left, top, right, bottom)
-        } else {//逻辑同上面源码
-            val rect = ShapeReflectionUtils.setRect(
-                drawable?.constantState, "mPadding",
-                Rect(left, top, right, bottom)
-            )
-            ShapeReflectionUtils.setValue(drawable, "mPadding", rect)
-            invalidateSelf()
-        }
-    }
-
     fun setRingInnerRadius(@Px radius: Int) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             drawable?.innerRadius = radius
         } else {//逻辑同上源码
-            ShapeReflectionUtils.setValue(drawable?.constantState, "mInnerRadius", radius)
+            setDrawableValue("mInnerRadius", radius)
             invalidateSelf()
         }
     }
@@ -177,7 +179,7 @@ class ShapeBuilder(private val targetView: View) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             drawable?.innerRadiusRatio = ratio
         } else {//逻辑同上源码
-            ShapeReflectionUtils.setValue(drawable?.constantState, "mInnerRadiusRatio", ratio)
+            setDrawableValue("mInnerRadiusRatio", ratio)
             invalidateSelf()
         }
     }
@@ -186,7 +188,7 @@ class ShapeBuilder(private val targetView: View) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             drawable?.thickness = thickness
         } else {//逻辑同上源码
-            ShapeReflectionUtils.setValue(drawable?.constantState, "mThickness", thickness)
+            setDrawableValue("mThickness", thickness)
             invalidateSelf()
         }
     }
@@ -195,7 +197,7 @@ class ShapeBuilder(private val targetView: View) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             drawable?.thicknessRatio = ratio
         } else {//逻辑同上源码
-            ShapeReflectionUtils.setValue(drawable?.constantState, "mThicknessRatio", ratio)
+            setDrawableValue("mThicknessRatio", ratio)
             invalidateSelf()
         }
     }
