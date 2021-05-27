@@ -5,7 +5,6 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
-import androidx.annotation.NonNull
 import androidx.annotation.Px
 import androidx.core.content.ContextCompat
 
@@ -15,32 +14,22 @@ import androidx.core.content.ContextCompat
  * 原理就是设置一个GradientDrawable背景，所以和background会互相覆盖
  *
  * shape相关属性及注释：
- * 1.点击[R.styleable.ShapeTextView_android_shape]，再点android:shape，GradientDrawable开头的styleable均是
- * 2.查看类源码：[GradientDrawable]
- *
- * 待补充：
- * 1.useLevel属性：是否启用缩放（缩放级别见Drawable.setLevel），根布局是缩放RING，gradient布局是LINEAR缩放横轴，RADIAL缩放半径，SWEEP缩放角度
- *                  几乎没啥用，暂时不做
- * 2.gradientRadius：原xml支持比例，受反射限制并且高api没有对应方法，待开发
+ * 1.参见注释声明的地方：[R.styleable.ShapeInfo_shapeSolidColor]
+ * 2.点击[R.styleable.ShapeTextView_android_shape]，再点android:shape，GradientDrawable开头的styleable均是
+ * 3.查看类源码：[GradientDrawable]
  */
 class ShapeBuilder(private val targetView: View) {
-    internal var drawable: GradientDrawable? = null
-        @NonNull
-        get() {
-            if (field == null) {
-                field = GradientDrawable()
-                field?.level = 10000
-                //延迟调用，设置背景
-                targetView.post { targetView.background = drawable }
-            }
-            return field
-        }
+    private var drawable: GradientDrawable? = null
+
+    internal fun setDrawable(d: GradientDrawable?) {
+        drawable = d;
+    }
 
     /**
      * 将mPathIsDirty改为true并请求重绘
      */
     private fun invalidateSelf() {
-        drawable?.orientation = drawable?.orientation//调用一次orientation就行了，省的反射
+        getDrawable().orientation = getDrawable().orientation//调用一次orientation就行了，省的反射
     }
 
     /**
@@ -49,7 +38,7 @@ class ShapeBuilder(private val targetView: View) {
      */
     private fun setDrawableValue(failedName: String, value: Any?) {
         try {
-            drawable?.constantState?.let {
+            getDrawable().constantState?.let {
                 val f = it.javaClass.getDeclaredField(failedName)
                 f.isAccessible = true
                 f[it] = value
@@ -60,21 +49,31 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
-    // set方法
+    // 公共方法
     /////////////////////////////////////////////////////////////////////////////////////////////////
+
+    fun getDrawable(): GradientDrawable {
+        if (drawable == null) {
+            drawable = GradientDrawable()
+            drawable?.level = 10000
+            //延迟调用，设置背景
+            targetView.post { targetView.background = drawable }
+        }
+        return drawable!!
+    }
 
     /**
      * 圆角类型
      */
     fun setShape(@ShapeDef.Shape shape: Int) {
-        drawable?.shape = shape
+        getDrawable().shape = shape
     }
 
     /**
      * 填充色
      */
     fun setSolidColorInt(@ColorInt color: Int) {
-        drawable?.setColor(color)
+        getDrawable().setColor(color)
     }
 
     fun setSolidColorRes(@ColorRes color: Int) {
@@ -82,14 +81,14 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     fun setSolidColorStateList(color: ColorStateList?) {
-        drawable?.color = color
+        getDrawable().color = color
     }
 
     /**
      * 圆角
      */
     fun setCornersRadius(@Px radius: Int) {
-        drawable?.cornerRadius = radius.toFloat()
+        getDrawable().cornerRadius = radius.toFloat()
     }
 
     /**
@@ -103,28 +102,28 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     fun setCornersRadius(radii: FloatArray?) {
-        drawable?.cornerRadii = radii
+        getDrawable().cornerRadii = radii
     }
 
     /**
      * 宽高，用处不大
      */
     fun setSize(@Px width: Int, @Px height: Int) {
-        drawable?.setSize(width, height)
+        getDrawable().setSize(width, height)
     }
 
     /**
      * grand类型
      */
     fun setGradientType(@ShapeDef.GradientType type: Int) {
-        drawable?.gradientType = type
+        getDrawable().gradientType = type
     }
 
     /**
      * 中心点，比例
      */
     fun setGradientCenter(x: Float, y: Float) {
-        drawable?.setGradientCenter(x, y)
+        getDrawable().setGradientCenter(x, y)
     }
 
     /**
@@ -133,12 +132,12 @@ class ShapeBuilder(private val targetView: View) {
      */
     fun setGradientColors(@ColorInt colors: IntArray?, offsets: FloatArray? = null) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            drawable?.setColors(colors, offsets)
+            getDrawable().setColors(colors, offsets)
         } else {
             if (offsets != null) {
                 setDrawableValue("mPositions", offsets)
             }
-            drawable?.colors = colors
+            getDrawable().colors = colors
         }
     }
 
@@ -156,19 +155,19 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     fun setOrientation(orientation: GradientDrawable.Orientation) {
-        drawable?.orientation = orientation
+        getDrawable().orientation = orientation
     }
 
     /**
      * 目前代码只支持固定值，用到再说
      */
     fun setGradientRadius(@Px radius: Int) {
-        drawable?.gradientRadius = radius.toFloat()
+        getDrawable().gradientRadius = radius.toFloat()
     }
 
     fun setRingInnerRadius(@Px radius: Int) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            drawable?.innerRadius = radius
+            getDrawable().innerRadius = radius
         } else {//逻辑同上源码
             setDrawableValue("mInnerRadius", radius)
             invalidateSelf()
@@ -177,7 +176,7 @@ class ShapeBuilder(private val targetView: View) {
 
     fun setRingInnerRadiusRatio(ratio: Float) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            drawable?.innerRadiusRatio = ratio
+            getDrawable().innerRadiusRatio = ratio
         } else {//逻辑同上源码
             setDrawableValue("mInnerRadiusRatio", ratio)
             invalidateSelf()
@@ -186,7 +185,7 @@ class ShapeBuilder(private val targetView: View) {
 
     fun setRingThickness(@Px thickness: Int) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            drawable?.thickness = thickness
+            getDrawable().thickness = thickness
         } else {//逻辑同上源码
             setDrawableValue("mThickness", thickness)
             invalidateSelf()
@@ -195,7 +194,7 @@ class ShapeBuilder(private val targetView: View) {
 
     fun setRingThicknessRatio(ratio: Float) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-            drawable?.thicknessRatio = ratio
+            getDrawable().thicknessRatio = ratio
         } else {//逻辑同上源码
             setDrawableValue("mThicknessRatio", ratio)
             invalidateSelf()

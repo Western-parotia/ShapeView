@@ -51,8 +51,8 @@ class ShapeInitHelper(private val targetView: View) {
         }
 
         //大小，GradientDrawable.updateGradientDrawableSize
-        builder.setSize(getPx(a, R.styleable.ShapeInfo_shapeSizeWidth, builder.drawable!!.intrinsicWidth),
-            getPx(a, R.styleable.ShapeInfo_shapeSizeHeight, builder.drawable!!.intrinsicHeight))
+        builder.setSize(getPx(a, R.styleable.ShapeInfo_shapeSizeWidth, builder.getDrawable().intrinsicWidth),
+            getPx(a, R.styleable.ShapeInfo_shapeSizeHeight, builder.getDrawable().intrinsicHeight))
 
         //渐变，GradientDrawable.updateGradientDrawableGradient
         if (a.hasValue(R.styleable.ShapeInfo_shapeGradientType) || a.hasValue(R.styleable.ShapeInfo_shapeGradientStartColor)) {
@@ -98,7 +98,7 @@ class ShapeInitHelper(private val targetView: View) {
             }
         }
 
-        targetView.background = builder.drawable
+        targetView.background = builder.getDrawable()
 
         a.recycle()
     }
@@ -107,7 +107,7 @@ class ShapeInitHelper(private val targetView: View) {
      * 自定义view重写setBackground调用
      */
     fun setBackground(background: Drawable?) {
-        builder.drawable = if (background is GradientDrawable) background else null
+        builder.setDrawable(if (background is GradientDrawable) background else null)
     }
 
     private fun getPx(a: TypedArray, index: Int, def: Int = 0) = a.getDimensionPixelSize(index, def)
