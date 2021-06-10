@@ -14,6 +14,8 @@ import androidx.annotation.ColorInt
  * view当设置背景时：[setBackground]
  * 设置属性：[builder]
  * 见实现[ShapeTextView]
+ *
+ * 耗时测试结果：init<0.1ms，onDraw和shape相同<0.1ms
  */
 class ShapeInitHelper(private val targetView: View) {
     val builder = ShapeBuilder(targetView)

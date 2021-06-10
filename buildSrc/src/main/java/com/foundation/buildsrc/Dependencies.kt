@@ -1,7 +1,7 @@
 package com.foundation.buildsrc
 
 object Dependencies {
-    private const val kotlinVersion = "1.4.32"
+    const val kotlinVersion = "1.4.32"
 
     object Kotlin {
         const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
