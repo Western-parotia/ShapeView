@@ -1,10 +1,12 @@
 package com.foundation.widget.shape
 
 import android.content.res.TypedArray
+import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.View
 import androidx.annotation.ColorInt
 
@@ -15,10 +17,12 @@ import androidx.annotation.ColorInt
  * 设置属性：[builder]
  * 见实现[ShapeTextView]
  *
- * 耗时测试结果：init<0.1ms，onDraw和shape相同<0.1ms
+ * 耗时测试结果：init<0.1ms，onDraw<0.1ms（view的background有优化[View.drawBackground]，会比shape多10%）
  */
 class ShapeInitHelper(private val targetView: View) {
     val builder = ShapeBuilder(targetView)
+    var lastViewWidth = 0
+    var lastViewHeight = 0;
 
     /**
      * 自定义view初始化attrs调用
@@ -55,6 +59,16 @@ class ShapeInitHelper(private val targetView: View) {
         //大小，GradientDrawable.updateGradientDrawableSize
         builder.setSize(getPx(a, R.styleable.ShapeInfo_shapeSizeWidth, builder.getDrawable().intrinsicWidth),
             getPx(a, R.styleable.ShapeInfo_shapeSizeHeight, builder.getDrawable().intrinsicHeight))
+
+        //位置
+        builder.gravity = a.getInt(R.styleable.ShapeInfo_shapeGravity, Gravity.CENTER)
+
+        //margin
+        val margin = getPx(a, R.styleable.ShapeInfo_shapeMargin)
+        builder.setMargin(getPx(a, R.styleable.ShapeInfo_shapeMarginLeft, margin),
+            getPx(a, R.styleable.ShapeInfo_shapeMarginTop, margin),
+            getPx(a, R.styleable.ShapeInfo_shapeMarginRight, margin),
+            getPx(a, R.styleable.ShapeInfo_shapeMarginBottom, margin))
 
         //渐变，GradientDrawable.updateGradientDrawableGradient
         if (a.hasValue(R.styleable.ShapeInfo_shapeGradientType) || a.hasValue(R.styleable.ShapeInfo_shapeGradientStartColor)) {
@@ -100,16 +114,114 @@ class ShapeInitHelper(private val targetView: View) {
             }
         }
 
-        targetView.background = builder.getDrawable()
-
         a.recycle()
     }
 
     /**
-     * 自定义view重写setBackground调用
+     * 自定义view重写draw调用
      */
-    fun setBackground(background: Drawable?) {
-        builder.setDrawable(if (background is GradientDrawable) background else null)
+    fun onDraw(canvas: Canvas) {
+        //计算shape的实际宽高
+        var drawableWidth: Int
+        var drawableHeight: Int
+        var usedGravity = false
+        val maxWidth = targetView.width - builder.marginRect.left - builder.marginRect.right//最大宽
+        val maxHeight = targetView.height - builder.marginRect.top - builder.marginRect.bottom
+        if (builder.getDrawable().intrinsicWidth >= 0 || builder.getDrawable().intrinsicHeight >= 0) {
+            drawableWidth = if (builder.getDrawable().intrinsicWidth >= 0) builder.getDrawable().intrinsicWidth else targetView.width
+            drawableHeight = if (builder.getDrawable().intrinsicHeight >= 0) builder.getDrawable().intrinsicHeight else targetView.height
+            usedGravity = true
+        } else {
+            drawableWidth = maxWidth
+            drawableHeight = maxHeight
+        }
+        if (drawableWidth > maxWidth) {
+            drawableWidth = maxWidth
+        }
+        if (drawableWidth < 0) {
+            drawableWidth = 0
+        }
+        if (drawableHeight > maxHeight) {
+            drawableHeight = maxHeight
+        }
+        if (drawableHeight < 0) {
+            drawableHeight = 0
+        }
+
+        //宽高变化
+        if (lastViewWidth != drawableWidth || lastViewHeight != drawableHeight) {
+            lastViewWidth = drawableWidth
+            lastViewHeight = drawableHeight
+            builder.getDrawable()
+                .setBounds(0, 0, lastViewWidth, lastViewHeight)
+        }
+
+        //计算shape位置
+        var translateX = 0
+        var translateY = 0
+        if (usedGravity) {
+            when (builder.gravity) {
+                Gravity.CENTER -> {
+                    translateX = (targetView.width - drawableWidth) / 2
+                    translateY = (targetView.height - drawableHeight) / 2
+                }
+                Gravity.LEFT, Gravity.START -> {
+                    translateX = 0 + builder.marginRect.left
+                    translateY = (targetView.height - drawableHeight) / 2
+                }
+                Gravity.TOP -> {
+                    translateX = (targetView.width - drawableWidth) / 2
+                    translateY = 0 + builder.marginRect.top
+                }
+                Gravity.RIGHT, Gravity.END -> {
+                    translateX = targetView.width - drawableWidth - builder.marginRect.right
+                    translateY = (targetView.height - drawableHeight) / 2
+                }
+                Gravity.BOTTOM -> {
+                    translateX = (targetView.width - drawableWidth) / 2
+                    translateY = targetView.height - drawableHeight - builder.marginRect.bottom
+                }
+                Gravity.LEFT or Gravity.TOP, Gravity.START or Gravity.TOP -> {
+                    translateX = 0 + builder.marginRect.left
+                    translateY = 0 + builder.marginRect.top
+                }
+                Gravity.RIGHT or Gravity.TOP, Gravity.END or Gravity.TOP -> {
+                    translateX = targetView.width - drawableWidth - builder.marginRect.right
+                    translateY = 0 + builder.marginRect.top
+                }
+                Gravity.LEFT or Gravity.BOTTOM -> {
+                    translateX = 0 + builder.marginRect.left
+                    translateY = targetView.height - drawableHeight - builder.marginRect.bottom
+                }
+                Gravity.RIGHT or Gravity.BOTTOM -> {
+                    translateX = targetView.width - drawableWidth - builder.marginRect.right
+                    translateY = targetView.height - drawableHeight - builder.marginRect.bottom
+                }
+            }
+        }
+
+        //加上view的scroll
+        translateX += targetView.scrollX
+        translateY += targetView.scrollY
+
+        //绘制上去
+        if (translateX or translateY == 0) {
+            builder.getDrawable()
+                .draw(canvas)
+        } else {
+            canvas.translate(translateX.toFloat(), translateY.toFloat())
+            builder.getDrawable()
+                .draw(canvas)
+            canvas.translate(-translateX.toFloat(), -translateY.toFloat())
+        }
+    }
+
+    /**
+     * 自定义view重写verifyDrawable固定写法：
+     * return super.verifyDrawable(who) || mShapeHelper.verifyDrawable(who)
+     */
+    fun verifyDrawable(who: Drawable): Boolean {
+        return (who == builder.getDrawable())
     }
 
     private fun getPx(a: TypedArray, index: Int, def: Int = 0) = a.getDimensionPixelSize(index, def)

@@ -1,6 +1,7 @@
 package com.foundation.widget.shape
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.FrameLayout
@@ -20,12 +21,16 @@ class ShapeFrameLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int
         mShapeHelper.initAttrs(attrs)
     }
 
-    override fun setBackground(background: Drawable?) {
-        mShapeHelper.setBackground(background)
-        super.setBackground(background)
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        mShapeHelper.onDraw(canvas)
     }
 
     fun buildShape(): ShapeBuilder {
         return mShapeHelper.builder
+    }
+
+    override fun verifyDrawable(who: Drawable): Boolean {
+        return super.verifyDrawable(who) || mShapeHelper.verifyDrawable(who)
     }
 }

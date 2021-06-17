@@ -4,14 +4,14 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View
+import androidx.appcompat.widget.AppCompatButton
 
 /**
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    View(context, attrs, defStyleAttr) {
+class ShapeButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+    AppCompatButton(context, attrs, defStyleAttr) {
     private val mShapeHelper = ShapeInitHelper(this)
 
     constructor(context: Context) : this(context, null, 0)

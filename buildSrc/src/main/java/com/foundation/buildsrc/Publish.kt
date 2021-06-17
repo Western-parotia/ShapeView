@@ -3,7 +3,7 @@ package com.foundation.buildsrc
 import java.io.File
 import java.util.*
 
-private const val VERSION ="0.0.1"
+private const val VERSION = "0.0.1"
 private const val SNAPSHOT = true
 
 /**
@@ -41,7 +41,10 @@ object Publish {
 
         init {
             val localProperties = Properties()
-            localProperties.load(File("local.properties").inputStream())
+            var lp = File("local.properties")
+            if (!lp.exists()) lp = File("../local.properties")//“/”win和mac都支持
+            if (!lp.exists()) throw RuntimeException("没有找到local.properties")
+            localProperties.load(lp.inputStream())
             val name = localProperties.getProperty("repositoryUserName")
             val password = localProperties.getProperty("repositoryPassword")
             if (name == null || password == null) {

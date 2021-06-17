@@ -13,6 +13,12 @@
         <attr name="shapeCornersBottomRightRadius" />
         <attr name="shapeSizeWidth" />
         <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -36,6 +42,12 @@
         <attr name="shapeCornersBottomRightRadius" />
         <attr name="shapeSizeWidth" />
         <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -59,6 +71,12 @@
         <attr name="shapeCornersBottomRightRadius" />
         <attr name="shapeSizeWidth" />
         <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -82,6 +100,99 @@
         <attr name="shapeCornersBottomRightRadius" />
         <attr name="shapeSizeWidth" />
         <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
+    <declare-styleable name="ShapeLinearLayout">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
+    <declare-styleable name="ShapeButton">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
+    <declare-styleable name="ShapeRadioButton">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -107,6 +218,22 @@
     <!--大小，写死宽高（一般用于wrap的控件）-->
     <attr name="shapeSizeWidth" format="dimension" />
     <attr name="shapeSizeHeight" format="dimension" />
+    <!--必须指定上面的shape大小
+    shape的位置[Gravity.LEFT]、[Gravity.TOP]、[Gravity.RIGHT]、[Gravity.BOTTOM]、[Gravity.CENTER]
+     及LEFT|TOP、RIGHT|TOP、LEFT|BOTTOM、RIGHT|BOTTOM，共9种-->
+    <attr name="shapeGravity">
+        <flag name="top" value="0x30" />
+        <flag name="bottom" value="0x50" />
+        <flag name="left" value="0x03" />
+        <flag name="right" value="0x05" />
+        <flag name="center" value="0x11" />
+    </attr>
+    <!--shape四边距-->
+    <attr name="shapeMargin" format="dimension" />
+    <attr name="shapeMarginLeft" format="dimension" />
+    <attr name="shapeMarginTop" format="dimension" />
+    <attr name="shapeMarginRight" format="dimension" />
+    <attr name="shapeMarginBottom" format="dimension" />
     <!--渐变类型-->
     <attr name="shapeGradientType">
         <enum name="linear" value="0" />

@@ -1,7 +1,9 @@
 package com.foundation.widget.shape
 
 import android.content.res.ColorStateList
+import android.graphics.Rect
 import android.graphics.drawable.GradientDrawable
+import android.view.Gravity
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -20,10 +22,21 @@ import androidx.core.content.ContextCompat
  */
 class ShapeBuilder(private val targetView: View) {
     private var drawable: GradientDrawable? = null
+    internal val marginRect: Rect = Rect()
 
-    internal fun setDrawable(d: GradientDrawable?) {
-        drawable = d;
-    }
+    /**
+     * 指定shape大小（[setSize]）时，也可指定shape位置
+     * [Gravity.LEFT]、[Gravity.TOP]、[Gravity.RIGHT]、[Gravity.BOTTOM]、[Gravity.CENTER]
+     * 及LEFT|TOP、RIGHT|TOP、LEFT|BOTTOM、RIGHT|BOTTOM，共9种
+     */
+    var gravity: Int = Gravity.CENTER
+        set(value) {
+            if (field == value) {
+                return
+            }
+            field = value
+            invalidateSelf()
+        }
 
     /**
      * 将mPathIsDirty改为true并请求重绘
@@ -56,8 +69,7 @@ class ShapeBuilder(private val targetView: View) {
         if (drawable == null) {
             drawable = GradientDrawable()
             drawable?.level = 10000
-            //延迟调用，设置背景
-            targetView.post { targetView.background = drawable }
+            drawable?.callback = targetView
         }
         return drawable!!
     }
@@ -110,6 +122,14 @@ class ShapeBuilder(private val targetView: View) {
      */
     fun setSize(@Px width: Int, @Px height: Int) {
         getDrawable().setSize(width, height)
+    }
+
+    /**
+     * shape四边距
+     */
+    fun setMargin(@Px left: Int, @Px top: Int, @Px right: Int, @Px bottom: Int) {
+        marginRect.set(left, top, right, bottom)
+        invalidateSelf()
     }
 
     /**
