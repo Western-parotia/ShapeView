@@ -134,6 +134,17 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     /**
+     * shape描边
+     */
+    fun setStroke(@Px width: Int, @ColorInt color: Int, @Px dashWidth: Int = 0, @Px dashGap: Int = 0) {
+        getDrawable().setStroke(width, color, dashWidth.toFloat(), dashGap.toFloat())
+    }
+
+    fun setStroke(@Px width: Int, colorStateList: ColorStateList?, @Px dashWidth: Int = 0, @Px dashGap: Int = 0) {
+        getDrawable().setStroke(width, colorStateList, dashWidth.toFloat(), dashGap.toFloat())
+    }
+
+    /**
      * grand类型
      */
     fun setGradientType(@ShapeDef.GradientType type: Int) {

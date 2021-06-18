@@ -19,6 +19,10 @@
         <attr name="shapeMarginTop" />
         <attr name="shapeMarginRight" />
         <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -48,6 +52,10 @@
         <attr name="shapeMarginTop" />
         <attr name="shapeMarginRight" />
         <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -77,6 +85,10 @@
         <attr name="shapeMarginTop" />
         <attr name="shapeMarginRight" />
         <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -106,6 +118,10 @@
         <attr name="shapeMarginTop" />
         <attr name="shapeMarginRight" />
         <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -135,6 +151,10 @@
         <attr name="shapeMarginTop" />
         <attr name="shapeMarginRight" />
         <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -164,6 +184,10 @@
         <attr name="shapeMarginTop" />
         <attr name="shapeMarginRight" />
         <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -193,6 +217,10 @@
         <attr name="shapeMarginTop" />
         <attr name="shapeMarginRight" />
         <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
         <attr name="shapeGradientType" />
         <attr name="shapeGradientCenterX" />
         <attr name="shapeGradientCenterY" />
@@ -233,6 +261,11 @@
     <attr name="shapeMarginTop" format="dimension" />
     <attr name="shapeMarginRight" format="dimension" />
     <attr name="shapeMarginBottom" format="dimension" />
+    <!--描边-->
+    <attr name="shapeStrokeWidth" format="dimension" />
+    <attr name="shapeStrokeColor" format="color" />
+    <attr name="shapeStrokeDashWidth" format="dimension" />
+    <attr name="shapeStrokeDashGap" format="dimension" />
     <!--渐变类型-->
     <attr name="shapeGradientType">
         <enum name="linear" value="0" />

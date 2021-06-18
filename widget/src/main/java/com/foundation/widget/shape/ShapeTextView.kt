@@ -22,8 +22,8 @@ class ShapeTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     }
 
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
         mShapeHelper.onDraw(canvas)
+        super.onDraw(canvas)
     }
 
     override fun verifyDrawable(who: Drawable): Boolean {

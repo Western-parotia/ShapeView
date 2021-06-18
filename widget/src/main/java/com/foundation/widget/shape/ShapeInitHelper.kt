@@ -28,7 +28,7 @@ import kotlin.math.max
 class ShapeInitHelper(private val targetView: View) {
     val builder = ShapeBuilder(targetView)
     var lastViewWidth = 0
-    var lastViewHeight = 0;
+    var lastViewHeight = 0
 
     init {
         targetView.setWillNotDraw(false)//必须draw（ViewGroup.initViewGroup有设置WILL_NOT_DRAW）
@@ -80,6 +80,12 @@ class ShapeInitHelper(private val targetView: View) {
             getPx(a, R.styleable.ShapeInfo_shapeMarginTop, margin),
             getPx(a, R.styleable.ShapeInfo_shapeMarginRight, margin),
             getPx(a, R.styleable.ShapeInfo_shapeMarginBottom, margin))
+
+        //描边，GradientDrawable.updateGradientDrawableStroke
+        builder.setStroke(getPx(a, R.styleable.ShapeInfo_shapeStrokeWidth, -1),
+            a.getColorStateList(R.styleable.ShapeInfo_shapeStrokeColor),
+            getPx(a, R.styleable.ShapeInfo_shapeStrokeDashWidth),
+            getPx(a, R.styleable.ShapeInfo_shapeStrokeDashGap))
 
         //渐变，GradientDrawable.updateGradientDrawableGradient
         if (a.hasValue(R.styleable.ShapeInfo_shapeGradientType) || a.hasValue(R.styleable.ShapeInfo_shapeGradientStartColor)) {
