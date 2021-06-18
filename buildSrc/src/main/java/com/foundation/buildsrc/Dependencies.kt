@@ -18,6 +18,6 @@ object Dependencies {
     }
 
     object Company {
-        const val shape = "com.foundation.widget:Shape:0.0.1-SNAPSHOT"
+        val shape = "com.foundation.widget:Shape:${Publish.Version.versionName}"
     }
 }

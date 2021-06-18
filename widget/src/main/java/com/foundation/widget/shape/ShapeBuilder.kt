@@ -174,14 +174,14 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     fun setGradientAngle(angle: Int) {
-        setOrientation(when (((angle + 720) % 360) / 45) {
-            1 -> GradientDrawable.Orientation.BL_TR
-            2 -> GradientDrawable.Orientation.BOTTOM_TOP
-            3 -> GradientDrawable.Orientation.BR_TL
-            4 -> GradientDrawable.Orientation.RIGHT_LEFT
-            5 -> GradientDrawable.Orientation.TR_BL
-            6 -> GradientDrawable.Orientation.TOP_BOTTOM
-            7 -> GradientDrawable.Orientation.TL_BR
+        setOrientation(when ((angle % 360) / 45) {
+            1, -7 -> GradientDrawable.Orientation.BL_TR
+            2, -6 -> GradientDrawable.Orientation.BOTTOM_TOP
+            3, -5 -> GradientDrawable.Orientation.BR_TL
+            4, -4 -> GradientDrawable.Orientation.RIGHT_LEFT
+            5, -3 -> GradientDrawable.Orientation.TR_BL
+            6, -2 -> GradientDrawable.Orientation.TOP_BOTTOM
+            7, -1 -> GradientDrawable.Orientation.TL_BR
             else -> GradientDrawable.Orientation.LEFT_RIGHT
         })
     }
