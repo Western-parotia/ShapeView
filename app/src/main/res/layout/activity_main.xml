@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.foundation.widget.shape.ShapeTextView
@@ -12,9 +13,6 @@
         android:layout_height="100dp"
         android:shape="rectangle"
         android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:shapeGradientCenterX="0.5"
         app:shapeGradientCenterY="0.5"
         app:shapeGradientEndColor="#f0f"
@@ -28,9 +26,6 @@
         android:layout_height="100dp"
         android:shape="rectangle"
         android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv"
         app:shapeCornersRadius="100dp"
         app:shapeGradientEndColor="#000"
         app:shapeGradientStartColor="#fff"
@@ -42,21 +37,27 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:shape="ring"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl"
         app:shapeInnerRadiusRatio="10"
         app:shapeSolidColor="#f0f"
         app:shapeThicknessRatio="10" />
+
+    <com.foundation.widget.shape.ShapeView
+        android:id="@+id/v2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:shape="ring"
+        app:shapeGravity="right|bottom"
+        app:shapeInnerRadiusRatio="10"
+        app:shapeMargin="10dp"
+        app:shapeSizeHeight="40dp"
+        app:shapeSizeWidth="40dp"
+        app:shapeSolidColor="#f0f"
+        app:shapeThicknessRatio="2.5" />
 
     <TextView
         android:id="@+id/tv_original"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/shape_test"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Hello World!" />
+</LinearLayout>

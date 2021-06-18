@@ -21,22 +21,9 @@ import androidx.core.content.ContextCompat
  * 3.查看类源码：[GradientDrawable]
  */
 class ShapeBuilder(private val targetView: View) {
+
     private var drawable: GradientDrawable? = null
     internal val marginRect: Rect = Rect()
-
-    /**
-     * 指定shape大小（[setSize]）时，也可指定shape位置
-     * [Gravity.LEFT]、[Gravity.TOP]、[Gravity.RIGHT]、[Gravity.BOTTOM]、[Gravity.CENTER]
-     * 及LEFT|TOP、RIGHT|TOP、LEFT|BOTTOM、RIGHT|BOTTOM，共9种
-     */
-    var gravity: Int = Gravity.CENTER
-        set(value) {
-            if (field == value) {
-                return
-            }
-            field = value
-            invalidateSelf()
-        }
 
     /**
      * 将mPathIsDirty改为true并请求重绘
@@ -123,6 +110,20 @@ class ShapeBuilder(private val targetView: View) {
     fun setSize(@Px width: Int, @Px height: Int) {
         getDrawable().setSize(width, height)
     }
+
+    /**
+     * 指定shape大小（[setSize]）时，也可指定shape位置
+     * [Gravity.LEFT]、[Gravity.TOP]、[Gravity.RIGHT]、[Gravity.BOTTOM]、[Gravity.CENTER]
+     * 及LEFT|TOP、RIGHT|TOP、LEFT|BOTTOM、RIGHT|BOTTOM，共9种
+     */
+    var gravity: Int = Gravity.CENTER
+        set(value) {
+            if (field == value) {
+                return
+            }
+            field = value
+            invalidateSelf()
+        }
 
     /**
      * shape四边距

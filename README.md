@@ -1,38 +1,24 @@
 # Shape背景的xml化
 
-### 注意：和shape一样都是设置background，所以和background属性会相互覆盖
-
-### 所有属性和shape xml保持一致
+### 所有属性和shape xml保持一致，不和background冲突
 
 android:shape：类型必须设置：rectangle、oval、line、ring
 
 shapeSolidColor：内部填充色
 
-shapeCornersRadius：四边圆角
+shapeCornersRadius、shapeCornersTopLeftRadius、shapeCornersTopRightRadius、shapeCornersBottomLeftRadius、shapeCornersBottomRightRadius：四边圆角
 
-shapeCornersTopLeftRadius：左上圆角
+shapeSizeWidth、shapeSizeHeight：写死宽/高度（用于wrap的控或使用shapeGravity属性）
 
-shapeCornersTopRightRadius：右上圆角
+shapeGravity：至少指定shapeSizeWidth/Height之一。shape在view的位置：left、top、right、bottom、center及left|top、right|top、left|bottom、right|bottom，共9种
 
-shapeCornersBottomLeftRadius：左下圆角
-
-shapeCornersBottomRightRadius：右下圆角
-
-shapeSizeWidth：写死宽度（一般用于wrap的控件）
-
-shapeSizeHeight：写死高度（一般用于wrap的控件）
+shapeMargin、shapeMarginLeft、shapeMarginTop、shapeMarginRight、shapeMarginBottom：shape距view四边距离
 
 shapeGradientType：渐变类型，渐变时必须设置：linear、radial、sweep
 
-shapeGradientCenterX：渐变中间x坐标，支持绝对值和百分比，如：100或50%
+shapeGradientCenterX、shapeGradientCenterY：渐变中间x/y坐标，支持绝对值和百分比，如：100或50%
 
-shapeGradientCenterY：渐变中间y坐标，支持绝对值和百分比，如：100或50%
-
-shapeGradientStartColor：渐变开始色
-
-shapeGradientCenterColor：渐变中间色
-
-shapeGradientEndColor：渐变结束色
+shapeGradientStartColor、shapeGradientCenterColor、shapeGradientEndColor：渐变开始/中间/结束色
 
 shapeGradientAngle：渐变方向角度，支持45的倍数，如：360
 

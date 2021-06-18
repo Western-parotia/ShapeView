@@ -9,13 +9,19 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import androidx.annotation.ColorInt
+import kotlin.math.max
 
 /**
- * shape的实现逻辑
- * view初始化：[initAttrs]
- * view当设置背景时：[setBackground]
- * 设置属性：[builder]
- * 见实现[ShapeTextView]
+ * xml shape效果的辅助类
+ *
+ * 自定义的实现逻辑（参考[ShapeView]）：
+ * 初始化时调用[initAttrs]
+ * onDraw时调用[onDraw]
+ * verifyDrawable时调用[verifyDrawable]
+ * getSuggestedMinimumHeight时调用[getSuggestedMinimumHeight]
+ * getSuggestedMinimumWidth时调用[getSuggestedMinimumWidth]
+ * 再自己加个buildShape()方法
+ * 最后把attrs拷过去改成自己view即可
  *
  * 耗时测试结果：init<0.1ms，onDraw<0.1ms（view的background有优化[View.drawBackground]，会比shape多10%）
  */
@@ -24,8 +30,13 @@ class ShapeInitHelper(private val targetView: View) {
     var lastViewWidth = 0
     var lastViewHeight = 0;
 
+    init {
+        targetView.setWillNotDraw(false)//必须draw（ViewGroup.initViewGroup有设置WILL_NOT_DRAW）
+    }
+
     /**
-     * 自定义view初始化attrs调用
+     * 初始化attrs固定写法（必须）：
+     * mShapeHelper.initAttrs(attrs)
      */
     fun initAttrs(attrs: AttributeSet?) {
         if (attrs == null) {
@@ -118,7 +129,9 @@ class ShapeInitHelper(private val targetView: View) {
     }
 
     /**
-     * 自定义view重写draw调用
+     * 重写onDraw固定写法（必须）：
+     * super.onDraw(canvas)
+     * mShapeHelper.onDraw(canvas)
      */
     fun onDraw(canvas: Canvas) {
         //计算shape的实际宽高
@@ -217,11 +230,27 @@ class ShapeInitHelper(private val targetView: View) {
     }
 
     /**
-     * 自定义view重写verifyDrawable固定写法：
-     * return super.verifyDrawable(who) || mShapeHelper.verifyDrawable(who)
+     * 重写verifyDrawable固定写法（必须）：
+     * return mShapeHelper.verifyDrawable(who, super.verifyDrawable(who))
      */
-    fun verifyDrawable(who: Drawable): Boolean {
-        return (who == builder.getDrawable())
+    fun verifyDrawable(who: Drawable, superBoolean: Boolean): Boolean {
+        return superBoolean || (who == builder.getDrawable())
+    }
+
+    /**
+     * 重写getSuggestedMinimumHeight固定写法（必须）：
+     * return mShapeHelper.getSuggestedMinimumHeight(super.getSuggestedMinimumHeight())
+     */
+    fun getSuggestedMinimumHeight(superMinimumHeight: Int): Int {
+        return max(superMinimumHeight, builder.getDrawable().minimumHeight)
+    }
+
+    /**
+     * 重写getSuggestedMinimumWidth固定写法（必须）：
+     * return mShapeHelper.getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
+     */
+    fun getSuggestedMinimumWidth(superMinimumWidth: Int): Int {
+        return max(superMinimumWidth, builder.getDrawable().minimumWidth)
     }
 
     private fun getPx(a: TypedArray, index: Int, def: Int = 0) = a.getDimensionPixelSize(index, def)

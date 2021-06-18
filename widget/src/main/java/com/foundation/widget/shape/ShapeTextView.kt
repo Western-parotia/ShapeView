@@ -26,11 +26,22 @@ class ShapeTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
         mShapeHelper.onDraw(canvas)
     }
 
-    fun buildShape(): ShapeBuilder {
-        return mShapeHelper.builder
+    override fun verifyDrawable(who: Drawable): Boolean {
+        return mShapeHelper.verifyDrawable(who, super.verifyDrawable(who))
     }
 
-    override fun verifyDrawable(who: Drawable): Boolean {
-        return super.verifyDrawable(who) || mShapeHelper.verifyDrawable(who)
+    override fun getSuggestedMinimumHeight(): Int {
+        return mShapeHelper.getSuggestedMinimumHeight(super.getSuggestedMinimumHeight())
+    }
+
+    override fun getSuggestedMinimumWidth(): Int {
+        return mShapeHelper.getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
+    }
+
+    /**
+     * 代码设置
+     */
+    fun buildShape(): ShapeBuilder {
+        return mShapeHelper.builder
     }
 }

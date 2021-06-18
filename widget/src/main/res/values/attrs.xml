@@ -218,9 +218,8 @@
     <!--大小，写死宽高（一般用于wrap的控件）-->
     <attr name="shapeSizeWidth" format="dimension" />
     <attr name="shapeSizeHeight" format="dimension" />
-    <!--必须指定上面的shape大小
-    shape的位置[Gravity.LEFT]、[Gravity.TOP]、[Gravity.RIGHT]、[Gravity.BOTTOM]、[Gravity.CENTER]
-     及LEFT|TOP、RIGHT|TOP、LEFT|BOTTOM、RIGHT|BOTTOM，共9种-->
+    <!--至少指定shapeSizeWidth/Height之一
+    shape的位置：left、top、right、bottom、center及left|top、right|top、left|bottom、right|bottom，共9种-->
     <attr name="shapeGravity">
         <flag name="top" value="0x30" />
         <flag name="bottom" value="0x50" />
