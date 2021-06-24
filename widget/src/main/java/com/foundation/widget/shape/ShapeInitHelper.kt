@@ -64,7 +64,7 @@ class ShapeInitHelper(private val targetView: View) {
         val shapeBottomRightRadius = getPx(a, R.styleable.ShapeInfo_shapeCornersBottomRightRadius, radius)
         if (shapeTopLeftRadius != radius || shapeTopRightRadius != radius ||
             shapeBottomLeftRadius != radius || shapeBottomRightRadius != radius) {
-            builder.setCornersRadius(shapeTopLeftRadius, shapeTopRightRadius, shapeBottomLeftRadius, shapeBottomRightRadius)
+            builder.setCornersRadius(shapeTopLeftRadius, shapeTopRightRadius, shapeBottomRightRadius, shapeBottomLeftRadius)
         }
 
         //大小，GradientDrawable.updateGradientDrawableSize
