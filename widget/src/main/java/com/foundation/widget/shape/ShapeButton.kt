@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatButton
  * 详细说明见[ShapeBuilder]
  */
 class ShapeButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    AppCompatButton(context, attrs, defStyleAttr) {
+    AppCompatButton(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 
     constructor(context: Context) : this(context, null, 0)
@@ -41,7 +41,7 @@ class ShapeButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     /**
      * 代码设置
      */
-    fun buildShape(): ShapeBuilder {
+    override fun buildShape(): ShapeBuilder {
         return mShapeHelper.builder
     }
 }

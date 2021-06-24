@@ -11,7 +11,7 @@ import android.widget.LinearLayout
  * 详细说明见[ShapeBuilder]
  */
 class ShapeLinearLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    LinearLayout(context, attrs, defStyleAttr) {
+    LinearLayout(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 
     constructor(context: Context) : this(context, null, 0)
@@ -41,7 +41,7 @@ class ShapeLinearLayout(context: Context, attrs: AttributeSet?, defStyleAttr: In
     /**
      * 代码设置
      */
-    fun buildShape(): ShapeBuilder {
+    override fun buildShape(): ShapeBuilder {
         return mShapeHelper.builder
     }
 }

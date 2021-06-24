@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatRadioButton
  * 详细说明见[ShapeBuilder]
  */
 class ShapeRadioButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    AppCompatRadioButton(context, attrs, defStyleAttr) {
+    AppCompatRadioButton(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 
     constructor(context: Context) : this(context, null, 0)
@@ -41,7 +41,7 @@ class ShapeRadioButton(context: Context, attrs: AttributeSet?, defStyleAttr: Int
     /**
      * 代码设置
      */
-    fun buildShape(): ShapeBuilder {
+    override fun buildShape(): ShapeBuilder {
         return mShapeHelper.builder
     }
 }

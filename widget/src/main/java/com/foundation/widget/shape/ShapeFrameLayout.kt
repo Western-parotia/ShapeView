@@ -11,7 +11,7 @@ import android.widget.FrameLayout
  * 详细说明见[ShapeBuilder]
  */
 class ShapeFrameLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    FrameLayout(context, attrs, defStyleAttr) {
+    FrameLayout(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 
     constructor(context: Context) : this(context, null, 0)
@@ -41,7 +41,7 @@ class ShapeFrameLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int
     /**
      * 代码设置
      */
-    fun buildShape(): ShapeBuilder {
+    override fun buildShape(): ShapeBuilder {
         return mShapeHelper.builder
     }
 }

@@ -11,7 +11,7 @@ import android.view.View
  * 详细说明见[ShapeBuilder]
  */
 class ShapeView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    View(context, attrs, defStyleAttr) {
+    View(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 
     constructor(context: Context) : this(context, null, 0)
@@ -41,7 +41,7 @@ class ShapeView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     /**
      * 代码设置
      */
-    fun buildShape(): ShapeBuilder {
+    override fun buildShape(): ShapeBuilder {
         return mShapeHelper.builder
     }
 }
