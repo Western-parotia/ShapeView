@@ -66,5 +66,5 @@ shapeThicknessRatio：环的厚度占比，以shape宽为基础除以该值，�
 
 首先要配置腾讯云的maven，一般都有，不多说
 ```
-"com.foundation.widget:Shape:1.0.0"
+"com.foundation.widget:Shape:1.0.1"
 ```
