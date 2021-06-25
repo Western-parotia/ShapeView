@@ -14,6 +14,10 @@ shapeGravity：至少指定shapeSizeWidth/Height之一。shape在view的位置�
 
 shapeMargin、shapeMarginLeft、shapeMarginTop、shapeMarginRight、shapeMarginBottom：shape距view四边距离
 
+shapeStrokeWidth、shapeStrokeColor：描边宽和颜色
+
+shapeStrokeDashWidth、shapeStrokeDashGap：描边时间隙的线长度和间隙的空白长度，如果有则两个属性都要写
+
 shapeGradientType：渐变类型，渐变时必须设置：linear、radial、sweep
 
 shapeGradientCenterX、shapeGradientCenterY：渐变中间x/y坐标，支持绝对值和百分比，如：100或50%

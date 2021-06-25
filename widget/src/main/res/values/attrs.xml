@@ -264,7 +264,9 @@
     <!--描边-->
     <attr name="shapeStrokeWidth" format="dimension" />
     <attr name="shapeStrokeColor" format="color" />
+    <!--间隙的线长（如果有则两个属性都要写）-->
     <attr name="shapeStrokeDashWidth" format="dimension" />
+    <!--间隙的空白长（如果有则两个属性都要写）-->
     <attr name="shapeStrokeDashGap" format="dimension" />
     <!--渐变类型-->
     <attr name="shapeGradientType">

@@ -135,6 +135,8 @@ class ShapeBuilder(private val targetView: View) {
 
     /**
      * shape描边
+     * @param dashWidth 间隙的线长，如果有则两个属性都要写
+     * @param dashGap 间隙的空白长，如果有则两个属性都要写
      */
     fun setStroke(@Px width: Int, @ColorInt color: Int, @Px dashWidth: Int = 0, @Px dashGap: Int = 0) {
         getDrawable().setStroke(width, color, dashWidth.toFloat(), dashGap.toFloat())
