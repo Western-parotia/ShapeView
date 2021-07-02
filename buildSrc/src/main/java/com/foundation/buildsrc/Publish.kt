@@ -1,32 +1,25 @@
 package com.foundation.buildsrc
 
 import java.io.File
+import java.text.SimpleDateFormat
 import java.util.*
 
-private const val VERSION = "1.0.1"
+private const val VERSION = "1.0.2"
 private const val SNAPSHOT = false
 
 /**
  * 如果空则为4级包名
  */
-private const val ARTIFACT_ID = ""
+private const val ARTIFACT_ID = "shape-view"
 
 object Publish {
     object Version {
-        var versionName = VERSION
-            private set
-            get() = when (SNAPSHOT) {
-                true -> "$field-SNAPSHOT"
-                false -> field
-            }
+        val versionName = if (SNAPSHOT) "$VERSION-SNAPSHOT" else VERSION
         const val versionCode = 1
+        const val artifactId = ARTIFACT_ID
 
         private fun getTimestamp(): String {
-            return java.text.SimpleDateFormat(
-                "yyyy-MM-dd-hh-mm-ss",
-                java.util.Locale.CHINA
-            )
-                .format(java.util.Date(System.currentTimeMillis()))
+            return SimpleDateFormat("yyyy-MM-dd-hh-mm-ss", Locale.CHINA).format(Date())
         }
 
         fun getVersionTimestamp(): String {
@@ -35,11 +28,13 @@ object Publish {
     }
 
     object Maven {
-        val codingArtifactsRepoUrl = "https://mijukeji-maven.pkg.coding.net/repository/jileiku/base_maven/"
+        const val codingArtifactsRepoUrl =
+            "https://mijukeji-maven.pkg.coding.net/repository/jileiku/base_maven/"
         val repositoryUserName: String
         val repositoryPassword: String
 
         init {
+            //读取local的腾讯云用户名和密码
             val localProperties = Properties()
             var lp = File("local.properties")
             if (!lp.exists()) lp = File("../local.properties")//“/”win和mac都支持
@@ -52,6 +47,24 @@ object Publish {
             }
             repositoryUserName = name
             repositoryPassword = password
+
+            //自动修改md里的版本号，匹配像：xxx:manager:1.0.1-SNAPSHOT"
+            var md = File("README.md")
+            if (!md.exists()) md = File("../README.md")
+            if (md.exists()) {
+                val text = md.readText()
+                ":$ARTIFACT_ID:.+\"".toRegex().find(text)?.let {
+                    val currentVersion = ":$ARTIFACT_ID:${Version.versionName}\""
+                    if (it.value == currentVersion) {
+                        return@let
+                    }
+                    md.writeText(
+                        text.substring(0, it.range.first)
+                                + currentVersion
+                                + text.substring(it.range.last + 1, text.length)
+                    )
+                }
+            }
         }
 
         /**
@@ -80,27 +93,5 @@ object Publish {
             }
             throw  RuntimeException("没有找到第四级包名")
         }
-
-        /**
-         * 上传库时的名字（如果配置为空则取四级包名名字）
-         */
-        fun getArtifactId(projectDir: File): String {
-            val id = ARTIFACT_ID
-            if (id.isNotEmpty()) {
-                return id;
-            }
-            try {
-                val javaFile = File(projectDir, "src\\main\\java")
-                if (javaFile.exists()) {
-                    val name = javaFile.listFiles()[0].listFiles()[0].listFiles()[0].listFiles()[0].name
-                    //第四级的名字，首字母大写
-                    return name[0].toUpperCase() + name.substring(1, name.length)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            throw  RuntimeException("没有找到第四级包名")
-        }
-
     }
 }

@@ -58,7 +58,7 @@ publishing {
     publications {
         create<MavenPublication>("tools") {
             groupId = Publish.Maven.getThreePackage(projectDir)
-            artifactId = Publish.Maven.getArtifactId(projectDir)
+            artifactId = Publish.Version.artifactId
             version = Publish.Version.versionName
             artifact(sourceCodeTask)
             afterEvaluate {//在脚本读取完成后绑定
