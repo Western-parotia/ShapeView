@@ -26,6 +26,11 @@ class ShapeBuilder(private val targetView: View) {
     internal val marginRect: Rect = Rect()
 
     /**
+     * 临时存的方便使用默认值
+     */
+    private var strokeWidth = -1
+
+    /**
      * 将mPathIsDirty改为true并请求重绘
      */
     private fun invalidateSelf() {
@@ -105,7 +110,7 @@ class ShapeBuilder(private val targetView: View) {
     }
 
     /**
-     * 宽高，用处不大
+     * 宽高
      */
     fun setSize(@Px width: Int, @Px height: Int) {
         getDrawable().setSize(width, height)
@@ -135,14 +140,21 @@ class ShapeBuilder(private val targetView: View) {
 
     /**
      * shape描边
+     */
+    fun setStroke(@ColorInt color: Int) {
+        setStroke(strokeWidth, color)
+    }
+
+    /**
      * @param dashWidth 间隙的线长，如果有则两个属性都要写
      * @param dashGap 间隙的空白长，如果有则两个属性都要写
      */
     fun setStroke(@Px width: Int, @ColorInt color: Int, @Px dashWidth: Int = 0, @Px dashGap: Int = 0) {
-        getDrawable().setStroke(width, color, dashWidth.toFloat(), dashGap.toFloat())
+        setStroke(width, ColorStateList.valueOf(color), dashWidth, dashGap)
     }
 
     fun setStroke(@Px width: Int, colorStateList: ColorStateList?, @Px dashWidth: Int = 0, @Px dashGap: Int = 0) {
+        strokeWidth = width
         getDrawable().setStroke(width, colorStateList, dashWidth.toFloat(), dashGap.toFloat())
     }
 
