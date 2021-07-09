@@ -2,6 +2,8 @@
 
 ### 所有属性和shape xml保持一致，不和background冲突
 
+tv.buildShape().setXXX：代码设置，均和下面同名，如setStroke
+
 android:shape：类型必须设置：rectangle、oval、line、ring
 
 shapeSolidColor：内部填充色
