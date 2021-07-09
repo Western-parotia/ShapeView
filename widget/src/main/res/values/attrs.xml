@@ -267,6 +267,39 @@
         <attr name="shapeThickness" />
         <attr name="shapeThicknessRatio" />
     </declare-styleable>
+    <declare-styleable name="ShapeEditText">
+        <attr name="android:shape" />
+        <attr name="shapeSolidColor" />
+        <attr name="shapeCornersRadius" />
+        <attr name="shapeCornersTopLeftRadius" />
+        <attr name="shapeCornersTopRightRadius" />
+        <attr name="shapeCornersBottomLeftRadius" />
+        <attr name="shapeCornersBottomRightRadius" />
+        <attr name="shapeSizeWidth" />
+        <attr name="shapeSizeHeight" />
+        <attr name="shapeGravity" />
+        <attr name="shapeMargin" />
+        <attr name="shapeMarginLeft" />
+        <attr name="shapeMarginTop" />
+        <attr name="shapeMarginRight" />
+        <attr name="shapeMarginBottom" />
+        <attr name="shapeStrokeWidth" />
+        <attr name="shapeStrokeColor" />
+        <attr name="shapeStrokeDashWidth" />
+        <attr name="shapeStrokeDashGap" />
+        <attr name="shapeGradientType" />
+        <attr name="shapeGradientCenterX" />
+        <attr name="shapeGradientCenterY" />
+        <attr name="shapeGradientStartColor" />
+        <attr name="shapeGradientCenterColor" />
+        <attr name="shapeGradientEndColor" />
+        <attr name="shapeGradientAngle" />
+        <attr name="shapeGradientRadius" />
+        <attr name="shapeInnerRadius" />
+        <attr name="shapeInnerRadiusRatio" />
+        <attr name="shapeThickness" />
+        <attr name="shapeThicknessRatio" />
+    </declare-styleable>
 
     <!--内部填充色-->
     <attr name="shapeSolidColor" format="color" />

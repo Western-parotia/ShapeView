@@ -30,8 +30,8 @@ dependencies {
     implementation(Dependencies.AndroidX.appcompat)
     implementation(Dependencies.Material.material)
 
-    implementation(Dependencies.Company.shape)
-//    implementation(project(":widget"))
+//    implementation(Dependencies.Company.shape)
+    implementation(project(":widget"))
 }
 configurations.all {
     resolutionStrategy {
