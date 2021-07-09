@@ -4,14 +4,14 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 
 /**
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeFrameLayout(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    FrameLayout(context, attrs, defStyleAttr), IShape {
+class ShapeConstraintLayout(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    ConstraintLayout(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 
     init {

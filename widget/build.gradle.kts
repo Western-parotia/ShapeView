@@ -1,4 +1,3 @@
-
 import com.foundation.buildsrc.Dependencies
 import com.foundation.buildsrc.Publish
 
@@ -14,6 +13,7 @@ dependencies {
     implementation(Dependencies.Kotlin.kotlin_stdlib)
     implementation(Dependencies.AndroidX.core_ktx)
     implementation(Dependencies.AndroidX.appcompat)
+    implementation(Dependencies.AndroidX.constraint_layout)
 }
 
 android {
