@@ -10,7 +10,7 @@ import android.view.View
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+class ShapeView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     View(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 

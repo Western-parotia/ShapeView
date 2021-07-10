@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatEditText
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeEditText(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+class ShapeEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     AppCompatEditText(context, attrs, defStyleAttr) {
     private val mShapeHelper = ShapeInitHelper(this)
 
