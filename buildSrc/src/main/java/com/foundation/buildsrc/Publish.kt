@@ -85,6 +85,7 @@ object Publish {
                     val child = javaFile.listFiles()[0].listFiles()[0].listFiles()[0].listFiles()[0]
                     //先删掉前段路径，然后转为.
                     return child.absolutePath.substring(javaFile.absolutePath.length + 1)
+                        .replace(".", "_")
                         .replace("/", ".")
                         .replace("\\", ".")
                 }

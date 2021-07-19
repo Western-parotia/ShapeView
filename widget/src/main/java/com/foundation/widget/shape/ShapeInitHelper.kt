@@ -217,6 +217,9 @@ class ShapeInitHelper(private val targetView: View) {
                     translateY = targetView.height - drawableHeight - builder.marginRect.bottom
                 }
             }
+        } else {
+            translateX = builder.marginRect.left
+            translateY = builder.marginRect.top
         }
 
         //加上view的scroll
