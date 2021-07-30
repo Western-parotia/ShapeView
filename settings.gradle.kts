@@ -1,2 +1,2 @@
-include(":service")
+include(":widget")
 include(":app")
