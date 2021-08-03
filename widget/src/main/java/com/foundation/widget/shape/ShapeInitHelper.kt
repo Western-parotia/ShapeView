@@ -4,6 +4,7 @@ import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.StateListDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -128,6 +129,22 @@ class ShapeInitHelper(private val targetView: View) {
             builder.setRingThickness(shapeThickness)
             if (shapeThickness == -1) {
                 builder.setRingThicknessRatio(shapeThicknessRatio)
+            }
+        }
+
+        //附加的功能selected、checked状态切换
+        val dSelected = a.getDrawable(R.styleable.ShapeInfo_selectedBackground)
+        val dChecked = a.getDrawable(R.styleable.ShapeInfo_checkedBackground)
+        val dDefault = a.getDrawable(R.styleable.ShapeInfo_defaultBackground)
+        if ((dSelected != null || dChecked != null) && dDefault != null) {
+            targetView.background = StateListDrawable().apply {
+                if (dSelected != null) {
+                    addState(intArrayOf(android.R.attr.state_selected), dSelected)
+                }
+                if (dChecked != null) {
+                    addState(intArrayOf(android.R.attr.state_checked), dChecked)
+                }
+                addState(intArrayOf(), dDefault)
             }
         }
 

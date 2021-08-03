@@ -5,14 +5,14 @@ import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.R
-import androidx.appcompat.widget.AppCompatRadioButton
+import androidx.appcompat.widget.AppCompatCheckBox
 
 /**
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeRadioButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.radioButtonStyle) :
-    AppCompatRadioButton(context, attrs, defStyleAttr), IShape {
+class ShapeCheckedBox @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.checkboxStyle) :
+    AppCompatCheckBox(context, attrs, defStyleAttr), IShape {
     private var shapeHelper: ShapeInitHelper? = null
 
     init {

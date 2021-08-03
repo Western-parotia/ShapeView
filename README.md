@@ -42,6 +42,13 @@ shapeThicknessRatio：环的厚度占比，以shape宽为基础除以该值，�
 
 ~~shapeUseLevel属性：歧义特多，几乎没啥用，暂时不做~~
 
+###额外背景状态选择器功能
+selectedBackground：selected时背景（会顶替background，必须有defaultBackground）
+
+checkedBackground：cheeked时背景
+
+defaultBackground：默认状态时背景
+
 示例：
 
 ```
@@ -72,5 +79,5 @@ shapeThicknessRatio：环的厚度占比，以shape宽为基础除以该值，�
 
 首先要配置腾讯云的maven，一般都有，不多说
 ```
-"com.foundation.widget:shape-view:1.0.8"
+"com.foundation.widget:shape-view:1.0.9-SNAPSHOT"
 ```
