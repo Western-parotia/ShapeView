@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.ColorInt
 import kotlin.math.max
 
@@ -133,11 +134,11 @@ class ShapeInitHelper(private val targetView: View) {
         }
 
         //附加的功能selected、checked状态切换
-        val dSelected = a.getDrawable(R.styleable.ShapeInfo_selectedBackground)
-        val dChecked = a.getDrawable(R.styleable.ShapeInfo_checkedBackground)
-        val dDefault = a.getDrawable(R.styleable.ShapeInfo_defaultBackground)
+        val dSelected = a.getDrawable(R.styleable.ShapeInfo_stateSelectedRes)
+        val dChecked = a.getDrawable(R.styleable.ShapeInfo_stateCheckedRes)
+        val dDefault = a.getDrawable(R.styleable.ShapeInfo_stateDefaultRes)
         if ((dSelected != null || dChecked != null) && dDefault != null) {
-            targetView.background = StateListDrawable().apply {
+            val drawable = StateListDrawable().apply {
                 if (dSelected != null) {
                     addState(intArrayOf(android.R.attr.state_selected), dSelected)
                 }
@@ -146,9 +147,34 @@ class ShapeInitHelper(private val targetView: View) {
                 }
                 addState(intArrayOf(), dDefault)
             }
+            when (a.getInt(R.styleable.ShapeInfo_stateType, 0)) {
+                0 -> {
+                    targetView.background = drawable
+                }
+                1 -> {
+                    setBounds(left = drawable)
+                }
+                2 -> {
+                    setBounds(top = drawable)
+                }
+                3 -> {
+                    setBounds(right = drawable)
+                }
+                4 -> {
+                    setBounds(bottom = drawable)
+                }
+            }
         }
 
         a.recycle()
+    }
+
+    private fun setBounds(left: Drawable? = null, top: Drawable? = null, right: Drawable? = null, bottom: Drawable? = null) {
+        (targetView as? TextView)?.let {
+            val drawables = it.compoundDrawables
+            it.setCompoundDrawablesWithIntrinsicBounds(left ?: drawables[0], top ?: drawables[1],
+                right ?: drawables[2], bottom ?: drawables[3])
+        }
     }
 
     /**

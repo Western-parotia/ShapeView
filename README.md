@@ -43,11 +43,11 @@ shapeThicknessRatio：环的厚度占比，以shape宽为基础除以该值，�
 ~~shapeUseLevel属性：歧义特多，几乎没啥用，暂时不做~~
 
 ###额外背景状态选择器功能
-selectedBackground：selected时背景（会顶替background，必须有defaultBackground）
+stateSelectedRes：selected时背景（会顶替background，必须有stateDefaultRes）
 
-checkedBackground：cheeked时背景
+stateCheckedRes：cheeked时背景
 
-defaultBackground：默认状态时背景
+stateDefaultRes：默认状态时背景
 
 示例：
 
