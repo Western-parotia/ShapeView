@@ -45,8 +45,13 @@ class ShapeInitHelper(private val targetView: View) {
             return
         }
         val a = targetView.context.obtainStyledAttributes(attrs, R.styleable.ShapeInfo)
+        initShape(a)
+        initState(a)
+        a.recycle()
+    }
+
+    private fun initShape(a: TypedArray) {
         if (!a.hasValue(R.styleable.ShapeInfo_android_shape)) {
-            a.recycle()
             return
         }
 
@@ -132,8 +137,12 @@ class ShapeInitHelper(private val targetView: View) {
                 builder.setRingThicknessRatio(shapeThicknessRatio)
             }
         }
+    }
 
-        //附加的功能selected、checked状态切换
+    /**
+     * 附加的功能selected、checked状态切换
+     */
+    private fun initState(a: TypedArray) {
         val dSelected = a.getDrawable(R.styleable.ShapeInfo_stateSelectedRes)
         val dChecked = a.getDrawable(R.styleable.ShapeInfo_stateCheckedRes)
         val dDefault = a.getDrawable(R.styleable.ShapeInfo_stateDefaultRes)
@@ -165,8 +174,6 @@ class ShapeInitHelper(private val targetView: View) {
                 }
             }
         }
-
-        a.recycle()
     }
 
     private fun setBounds(left: Drawable? = null, top: Drawable? = null, right: Drawable? = null, bottom: Drawable? = null) {
