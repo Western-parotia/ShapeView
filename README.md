@@ -79,5 +79,5 @@ stateDefaultRes：默认状态时背景
 
 首先要配置腾讯云的maven，一般都有，不多说
 ```
-"com.foundation.widget:shape-view:1.0.9-SNAPSHOT"
+"com.foundation.widget:shape-view:1.0.9"
 ```

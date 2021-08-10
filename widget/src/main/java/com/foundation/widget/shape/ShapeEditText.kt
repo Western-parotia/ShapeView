@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatEditText
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.editTextStyle) :
+open class ShapeEditText @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.editTextStyle) :
     AppCompatEditText(context, attrs, defStyleAttr) {
     private val mShapeHelper = ShapeInitHelper(this)
 

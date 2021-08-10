@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatCheckBox
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeCheckedBox @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.checkboxStyle) :
+open class ShapeCheckedBox @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.checkboxStyle) :
     AppCompatCheckBox(context, attrs, defStyleAttr), IShape {
     private var shapeHelper: ShapeInitHelper? = null
 

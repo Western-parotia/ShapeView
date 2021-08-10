@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatButton
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.buttonStyle) :
+open class ShapeButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.buttonStyle) :
     AppCompatButton(context, attrs, defStyleAttr), IShape {
     private val mShapeHelper = ShapeInitHelper(this)
 

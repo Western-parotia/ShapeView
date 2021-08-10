@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatRadioButton
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeRadioButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.radioButtonStyle) :
+open class ShapeRadioButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.radioButtonStyle) :
     AppCompatRadioButton(context, attrs, defStyleAttr), IShape {
     private var shapeHelper: ShapeInitHelper? = null
 

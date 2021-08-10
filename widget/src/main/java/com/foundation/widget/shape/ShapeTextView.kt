@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView
  * 可实现xml写shape背景
  * 详细说明见[ShapeBuilder]
  */
-class ShapeTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.textViewStyle) :
+open class ShapeTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.textViewStyle) :
     AppCompatTextView(context, attrs, defStyleAttr) {
     private val mShapeHelper = ShapeInitHelper(this)
 
