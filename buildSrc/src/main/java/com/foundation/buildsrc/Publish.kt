@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 private const val VERSION = "1.1.0"
-private const val SNAPSHOT = true
+private const val SNAPSHOT = false
 
 /**
  * 如果空则为4级包名
