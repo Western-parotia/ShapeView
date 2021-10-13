@@ -13,43 +13,41 @@ import androidx.appcompat.widget.AppCompatCheckBox
  */
 open class ShapeCheckedBox @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.checkboxStyle) :
     AppCompatCheckBox(context, attrs, defStyleAttr), IShape {
-    private var shapeHelper: ShapeInitHelper? = null
+
+    private var _shapeHelper: ShapeInitHelper? = null
+        get() {
+            if (field == null) {
+                field = ShapeInitHelper(this)
+            }
+            return field
+        }
+    private val shapeHelper get() = _shapeHelper!!
 
     init {
-        getHelper().initAttrs(attrs)
-    }
-
-    /**
-     * CheckedBox、RadioButton会在构造调用[verifyDrawable]等方法
-     */
-    private fun getHelper(): ShapeInitHelper {
-        if (shapeHelper == null) {
-            shapeHelper = ShapeInitHelper(this)
-        }
-        return shapeHelper!!
+        shapeHelper.initAttrs(attrs)
     }
 
     override fun onDraw(canvas: Canvas) {
-        getHelper().onDraw(canvas)
+        shapeHelper.onDraw(canvas)
         super.onDraw(canvas)
     }
 
     override fun verifyDrawable(who: Drawable): Boolean {
-        return getHelper().verifyDrawable(who, super.verifyDrawable(who))
+        return shapeHelper.verifyDrawable(who, super.verifyDrawable(who))
     }
 
     override fun getSuggestedMinimumHeight(): Int {
-        return getHelper().getSuggestedMinimumHeight(super.getSuggestedMinimumHeight())
+        return shapeHelper.getSuggestedMinimumHeight(super.getSuggestedMinimumHeight())
     }
 
     override fun getSuggestedMinimumWidth(): Int {
-        return getHelper().getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
+        return shapeHelper.getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
     }
 
     /**
      * 代码设置
      */
     override fun buildShape(): ShapeBuilder {
-        return getHelper().builder
+        return shapeHelper.builder
     }
 }

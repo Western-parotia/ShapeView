@@ -33,10 +33,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = freeCompilerArgs + arrayOf("-module-name", Publish.Maven.getFourPackage(projectDir))
     }
-    compileOptions {
-        kotlinOptions.freeCompilerArgs += arrayOf("-module-name", Publish.Maven.getFourPackage(projectDir))
-    }
+
 }
 
 val sourceCodeTask: Jar = tasks.register("sourceCode", Jar::class.java) {

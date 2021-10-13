@@ -11,34 +11,42 @@ import androidx.appcompat.widget.AppCompatTextView
  * 详细说明见[ShapeBuilder]
  */
 open class ShapeTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.textViewStyle) :
-    AppCompatTextView(context, attrs, defStyleAttr) {
-    private val mShapeHelper = ShapeInitHelper(this)
+    AppCompatTextView(context, attrs, defStyleAttr), IShape {
+
+    private var _shapeHelper: ShapeInitHelper? = null
+        get() {
+            if (field == null) {
+                field = ShapeInitHelper(this)
+            }
+            return field
+        }
+    private val shapeHelper get() = _shapeHelper!!
 
     init {
-        mShapeHelper.initAttrs(attrs)
+        shapeHelper.initAttrs(attrs)
     }
 
     override fun onDraw(canvas: Canvas) {
-        mShapeHelper.onDraw(canvas)
+        shapeHelper.onDraw(canvas)
         super.onDraw(canvas)
     }
 
     override fun verifyDrawable(who: Drawable): Boolean {
-        return mShapeHelper.verifyDrawable(who, super.verifyDrawable(who))
+        return shapeHelper.verifyDrawable(who, super.verifyDrawable(who))
     }
 
     override fun getSuggestedMinimumHeight(): Int {
-        return mShapeHelper.getSuggestedMinimumHeight(super.getSuggestedMinimumHeight())
+        return shapeHelper.getSuggestedMinimumHeight(super.getSuggestedMinimumHeight())
     }
 
     override fun getSuggestedMinimumWidth(): Int {
-        return mShapeHelper.getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
+        return shapeHelper.getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
     }
 
     /**
      * 代码设置
      */
-    fun buildShape(): ShapeBuilder {
-        return mShapeHelper.builder
+    override fun buildShape(): ShapeBuilder {
+        return shapeHelper.builder
     }
 }
