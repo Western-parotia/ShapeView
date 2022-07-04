@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import kotlin.math.max
+import kotlin.math.min
 
 /**
  * xml shape效果的辅助类
@@ -29,8 +30,10 @@ import kotlin.math.max
  */
 class ShapeInitHelper(private val targetView: View) {
     val builder = ShapeBuilder(targetView)
-    var lastViewWidth = 0
-    var lastViewHeight = 0
+    val maxWidthHeightData = MaxWidthHeightData(targetView)
+
+    private var lastViewWidth = 0
+    private var lastViewHeight = 0
 
     init {
         targetView.setWillNotDraw(false)//必须draw（ViewGroup.initViewGroup有设置WILL_NOT_DRAW）
@@ -47,6 +50,7 @@ class ShapeInitHelper(private val targetView: View) {
         val a = targetView.context.obtainStyledAttributes(attrs, R.styleable.ShapeInfo)
         initShape(a)
         initState(a)
+        initMaxWidthHeight(a)
         a.recycle()
     }
 
@@ -174,6 +178,13 @@ class ShapeInitHelper(private val targetView: View) {
                 }
             }
         }
+    }
+
+    private fun initMaxWidthHeight(a: TypedArray) {
+        maxWidthHeightData.initWithAttr(
+            getPx(a, R.styleable.ShapeInfo_android_maxWidth, -1),
+            getPx(a, R.styleable.ShapeInfo_android_maxHeight, -1)
+        )
     }
 
     private fun setBounds(left: Drawable? = null, top: Drawable? = null, right: Drawable? = null, bottom: Drawable? = null) {
@@ -310,6 +321,50 @@ class ShapeInitHelper(private val targetView: View) {
      */
     fun getSuggestedMinimumWidth(superMinimumWidth: Int): Int {
         return max(superMinimumWidth, builder.getDrawable().minimumWidth)
+    }
+
+    /**
+     * 重写onMeasure固定写法（支持mim、max宽高必须）：
+     * shapeHelper.getSuggestedMeasureWidthHeight(widthMeasureSpec, heightMeasureSpec) { wms, hms ->
+     *     super.onMeasure(wms, hms)
+     * }
+     * 外包获取min、max相关见[maxWidthHeightData]
+     */
+    inline fun getSuggestedMeasureWidthHeight(
+        widthMeasureSpec: Int,
+        heightMeasureSpec: Int,
+        callback: (widthMeasureSpec: Int, heightMeasureSpec: Int) -> Unit
+    ) {
+        val widthMode = View.MeasureSpec.getMode(widthMeasureSpec)
+        val heightMode = View.MeasureSpec.getMode(heightMeasureSpec)
+
+        val newWidthMeasureSpec: Int
+        if (widthMode == View.MeasureSpec.EXACTLY) {
+            newWidthMeasureSpec = widthMeasureSpec
+        } else {
+            var newWidth = View.MeasureSpec.getSize(widthMeasureSpec)
+            if (maxWidthHeightData.maxWidth >= 0) {
+                newWidth = min(newWidth, maxWidthHeightData.maxWidth)
+                newWidthMeasureSpec = View.MeasureSpec.makeMeasureSpec(newWidth, View.MeasureSpec.AT_MOST)
+            } else {
+                newWidthMeasureSpec = View.MeasureSpec.makeMeasureSpec(newWidth, widthMode)
+            }
+        }
+
+        val newHeightMeasureSpec: Int
+        if (heightMode == View.MeasureSpec.EXACTLY) {
+            newHeightMeasureSpec = heightMeasureSpec
+        } else {
+            var newHeight = View.MeasureSpec.getSize(heightMeasureSpec)
+            if (maxWidthHeightData.maxHeight >= 0) {
+                newHeight = min(newHeight, maxWidthHeightData.maxHeight)
+                newHeightMeasureSpec = View.MeasureSpec.makeMeasureSpec(newHeight, View.MeasureSpec.AT_MOST)
+            } else {
+                newHeightMeasureSpec = View.MeasureSpec.makeMeasureSpec(newHeight, heightMode)
+            }
+        }
+
+        callback.invoke(newWidthMeasureSpec, newHeightMeasureSpec)
     }
 
     private fun getPx(a: TypedArray, index: Int, def: Int = 0) = a.getDimensionPixelSize(index, def)

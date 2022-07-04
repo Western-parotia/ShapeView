@@ -5,6 +5,8 @@
     <!--参见styleable的GradientDrawableGradient及相关属性-->
     <declare-styleable name="ShapeInfo">
         <attr name="android:shape" />
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
         <attr name="shapeSolidColor" />
         <attr name="shapeCornersRadius" />
         <attr name="shapeCornersTopLeftRadius" />
@@ -42,6 +44,8 @@
     </declare-styleable>
     <declare-styleable name="ShapeView">
         <attr name="android:shape" />
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
         <attr name="shapeSolidColor" />
         <attr name="shapeCornersRadius" />
         <attr name="shapeCornersTopLeftRadius" />
@@ -113,6 +117,8 @@
     </declare-styleable>
     <declare-styleable name="ShapeFrameLayout">
         <attr name="android:shape" />
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
         <attr name="shapeSolidColor" />
         <attr name="shapeCornersRadius" />
         <attr name="shapeCornersTopLeftRadius" />
@@ -148,6 +154,8 @@
     </declare-styleable>
     <declare-styleable name="ShapeLinearLayout">
         <attr name="android:shape" />
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
         <attr name="shapeSolidColor" />
         <attr name="shapeCornersRadius" />
         <attr name="shapeCornersTopLeftRadius" />
@@ -183,6 +191,8 @@
     </declare-styleable>
     <declare-styleable name="ShapeConstraintLayout">
         <attr name="android:shape" />
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
         <attr name="shapeSolidColor" />
         <attr name="shapeCornersRadius" />
         <attr name="shapeCornersTopLeftRadius" />

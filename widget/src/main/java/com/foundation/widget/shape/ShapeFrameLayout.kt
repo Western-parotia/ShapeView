@@ -43,10 +43,18 @@ open class ShapeFrameLayout @JvmOverloads constructor(context: Context, attrs: A
         return shapeHelper.getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        shapeHelper.getSuggestedMeasureWidthHeight(widthMeasureSpec, heightMeasureSpec) { wms, hms ->
+            super.onMeasure(wms, hms)
+        }
+    }
+
     /**
      * 代码设置
      */
     override fun buildShape(): ShapeBuilder {
         return shapeHelper.builder
     }
+
+    fun getMaxWidthHeightData() = shapeHelper.maxWidthHeightData
 }
