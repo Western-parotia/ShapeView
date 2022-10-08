@@ -77,7 +77,7 @@
         <attr name="shapeThickness" />
         <attr name="shapeThicknessRatio" />
         <attr name="stateSelectedRes" />
-        <attr name="stateDefaultRes" />/>
+        <attr name="stateDefaultRes" />
     </declare-styleable>
     <declare-styleable name="ShapeTextView">
         <attr name="android:shape" />
@@ -150,7 +150,7 @@
         <attr name="shapeThickness" />
         <attr name="shapeThicknessRatio" />
         <attr name="stateSelectedRes" />
-        <attr name="stateDefaultRes" />/>
+        <attr name="stateDefaultRes" />
     </declare-styleable>
     <declare-styleable name="ShapeLinearLayout">
         <attr name="android:shape" />
