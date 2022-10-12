@@ -335,6 +335,7 @@
         <attr name="stateCheckedRes" />
         <attr name="stateDefaultRes" />
         <attr name="stateType" />
+        <attr name="onlyCodeChecked" />
     </declare-styleable>
     <declare-styleable name="ShapeEditText">
         <attr name="android:shape" />
@@ -448,4 +449,6 @@
         <enum name="drawableRight" value="3" />
         <enum name="drawableBottom" value="4" />
     </attr>
+    <!--仅代码可改变选中状态-->
+    <attr name="onlyCodeChecked" format="boolean" />
 </resources>

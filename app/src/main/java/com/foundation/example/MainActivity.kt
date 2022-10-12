@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.foundation.widget.shape.ShapeCheckedBox
 import com.foundation.widget.shape.ShapeTextView
 
 class MainActivity : AppCompatActivity() {
@@ -22,5 +23,13 @@ class MainActivity : AppCompatActivity() {
                     setCornersRadius(100)
                 }
         }, 3000)
+
+        val cb = findViewById<ShapeCheckedBox>(R.id.v2)
+        Handler(Looper.getMainLooper()).postDelayed({
+            cb.onlyCodeChecked = false
+        }, 5000)
+        Handler(Looper.getMainLooper()).postDelayed({
+            cb.toggle()
+        }, 4000)
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import androidx.appcompat.R
 import androidx.appcompat.widget.AppCompatCheckBox
 
 /**
@@ -23,8 +22,18 @@ open class ShapeCheckedBox @JvmOverloads constructor(context: Context, attrs: At
         }
     private val shapeHelper get() = _shapeHelper!!
 
+    /**
+     * 是否只能代码设置，点击无法改变选中状态
+     */
+    var onlyCodeChecked = false
+
     init {
         shapeHelper.initAttrs(attrs)
+        if (attrs != null) {
+            val a = context.obtainStyledAttributes(attrs, R.styleable.ShapeCheckedBox)
+            onlyCodeChecked = a.getBoolean(R.styleable.ShapeCheckedBox_onlyCodeChecked, false)
+            a.recycle()
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -44,10 +53,29 @@ open class ShapeCheckedBox @JvmOverloads constructor(context: Context, attrs: At
         return shapeHelper.getSuggestedMinimumWidth(super.getSuggestedMinimumWidth())
     }
 
+    private var isPerformClick = false
+    override fun performClick(): Boolean {
+        isPerformClick = true
+        val result = super.performClick()
+        isPerformClick = false
+        return result
+    }
+
+    override fun setChecked(checked: Boolean) {
+        if (!(onlyCodeChecked && isPerformClick)) {
+            super.setChecked(checked)
+        }
+        isPerformClick = false
+    }
+
     /**
      * 代码设置
      */
     override fun buildShape(): ShapeBuilder {
         return shapeHelper.builder
     }
+
+    /**
+     * [onlyCodeChecked]
+     */
 }

@@ -50,6 +50,7 @@
         android:shape="rectangle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/v0"
+        app:onlyCodeChecked="true"
         app:shapeCornersRadius="500dp"
         app:shapeGradientEndColor="#00f"
         app:shapeGradientStartColor="#f0f"
