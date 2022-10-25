@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import androidx.appcompat.R
 import androidx.appcompat.widget.AppCompatEditText
 
 /**

@@ -298,6 +298,7 @@
         <attr name="stateCheckedRes" />
         <attr name="stateDefaultRes" />
         <attr name="stateType" />
+        <attr name="onlyCodeChecked" />
     </declare-styleable>
     <declare-styleable name="ShapeCheckedBox">
         <attr name="android:shape" />
