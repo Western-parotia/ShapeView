@@ -4,7 +4,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-private const val VERSION = "1.1.1"
+private const val VERSION = "1.1.2"
 private const val SNAPSHOT = false
 
 /**
